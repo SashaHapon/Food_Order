@@ -9,11 +9,11 @@ public interface IOrder {
 
     void setAccountsParameters(IAccount account);
 
-    void cafe(ICafe cafe);
+    void setCafeParameters(ICafe cafe);
 
     Meal choizeOfMeal(ICafe cafe, int i);
 
-    String getAccountName(IAccount account);
+    String getAccountName(IAccount account, int index);
 
     void getMoneyOnCard(IAccount account);
 

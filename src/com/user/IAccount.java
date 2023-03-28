@@ -1,13 +1,13 @@
 package com.user;
 
 public interface IAccount {
-    void setAccountName(String accountName);
+    void setAccount(String accountName, double moneyOnCard, String phoneNumber);
 
-    String getAccountName();
+    String getAccountName(int index);
 
-    void enrollmentMoney(double moneyOnCard);
+    void enrollmentMoney(double moneyOnCard, int index);
 
-    void writeOffMoneyOnCard(double moneyOnCard);
+    void writeOffMoneyOnCard(double moneyOnCard, int index);
 
-    double getMoneyOnCard();
+    double getMoneyOnCard(int index);
 }

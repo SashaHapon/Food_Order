@@ -16,10 +16,13 @@ public class Main {
 
         cafe.setMenu(menu);
         order.setAccountsParameters(account);
-        order.cafe(cafe);
+        order.setCafeParameters(cafe);
 
-        System.out.println(order.getAccountName(account));
+        System.out.println(order.getAccountName(account, 0));
         System.out.println(order.choizeOfMeal(cafe, 1));
+
+        account.setAccount("Vlad", 50, "45325252");
+
 
     }
 }

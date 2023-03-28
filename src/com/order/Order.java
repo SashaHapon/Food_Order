@@ -2,7 +2,6 @@ package com.order;
 
 import com.cafe.ICafe;
 import com.menu.Meal;
-import com.menu.Menu;
 import com.user.IAccount;
 
 public class Order implements IOrder{
@@ -10,10 +9,10 @@ public class Order implements IOrder{
     @Override
     public  void setAccountsParameters(IAccount account){
         account.setAccountName("Alex");
-        account.enrollmentMoney(0);
+        account.enrollmentMoney(0, 0);
     }
     @Override
-    public void cafe(ICafe cafe) {
+    public void setCafeParameters(ICafe cafe) {
         cafe.setCafe("Roze", 50);
     }
 
@@ -23,8 +22,8 @@ public class Order implements IOrder{
 
     }
     @Override
-    public String getAccountName(IAccount account) {
-        return account.getAccountName();
+    public String getAccountName(IAccount account, int index) {
+        return account.getAccountName(index);
     }
 
     @Override
