@@ -23,7 +23,7 @@ public class Main {
         System.out.println(order.choizeOfMeal(cafe, 1));
 
         account.setAccount("Vlad", 50, "45325252");
-
+        System.out.println(account.toString(1));
 
     }
 }

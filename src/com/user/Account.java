@@ -3,7 +3,7 @@ package com.user;
 import java.util.ArrayList;
 
 public class Account implements IAccount {
-    int sIndex = 0;
+    public int sIndex;
     ArrayList<Account> account = new ArrayList<>();
     String accountName;
     double moneyOnCard;
