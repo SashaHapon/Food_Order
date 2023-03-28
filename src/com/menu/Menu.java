@@ -15,4 +15,8 @@ public class Menu implements IMenu {
         return menu;
     }
 
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

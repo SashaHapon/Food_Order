@@ -11,7 +11,7 @@ public class Account implements IAccount {
     String index;
 
     public Account(){};
-    Account(String accountName, double moneyOnCard, String phoneNumber){
+    Account(String accountName, double moneyOnCard, String phoneNumber, String index){
         this.accountName = accountName;
         this.moneyOnCard = moneyOnCard;
         this.phoneNumber = phoneNumber;
@@ -20,7 +20,7 @@ public class Account implements IAccount {
 
     @Override
     public void setAccount(String accountName, double moneyOnCard, String phoneNumber){
-        Account account1 = new Account(accountName, moneyOnCard, phoneNumber);
+        Account account1 = new Account(accountName, moneyOnCard, phoneNumber, index());
         account.add(account1);
     }
 
@@ -46,4 +46,13 @@ public class Account implements IAccount {
         String newIndex = "index" + Integer.toString(sIndex);
       return newIndex;
      }
+    @Override
+    public String toString(int index) {
+        return "Account{" +
+                "accountName='" + account.get(index).accountName + '\'' +
+                ", moneyOnCard=" + account.get(index).moneyOnCard +
+                ", phoneNumber='" + account.get(index).phoneNumber + '\'' +
+                ", index='" + account.get(index).index + '\'' +
+                '}';
+    }
 }

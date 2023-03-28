@@ -19,6 +19,7 @@ public class Main {
         order.setCafeParameters(cafe);
 
         System.out.println(order.getAccountName(account, 0));
+        System.out.println(account.toString(0));
         System.out.println(order.choizeOfMeal(cafe, 1));
 
         account.setAccount("Vlad", 50, "45325252");

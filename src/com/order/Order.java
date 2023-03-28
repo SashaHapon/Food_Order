@@ -8,8 +8,7 @@ public class Order implements IOrder{
 
     @Override
     public  void setAccountsParameters(IAccount account){
-        account.setAccountName("Alex");
-        account.enrollmentMoney(0, 0);
+        account.setAccount("Alex", 100, "87866575");
     }
     @Override
     public void setCafeParameters(ICafe cafe) {
@@ -28,29 +27,23 @@ public class Order implements IOrder{
 
     @Override
     public void getMoneyOnCard(IAccount account) {
-
     }
 
     @Override
     public void checkMoneyAndPrice(IAccount account) {
-
     }
 
     @Override
     public void writeOffMoneyForOrder(IAccount account) {
-
     }
-
-
-
 
     @Override
     public void getOrder() {
-
     }
 
     @Override
     public String toString() {
         return super.toString();
     }
+
 }

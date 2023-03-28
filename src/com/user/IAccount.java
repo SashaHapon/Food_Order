@@ -10,4 +10,5 @@ public interface IAccount {
     void writeOffMoneyOnCard(double moneyOnCard, int index);
 
     double getMoneyOnCard(int index);
+    String toString(int Index);
 }
