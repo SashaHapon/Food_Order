@@ -1,29 +1,24 @@
-import com.cafe.Cafe;
-import com.cafe.ICafe;
-import com.menu.IMenu;
-import com.menu.Menu;
-import com.order.IOrder;
-import com.order.Order;
-import com.user.Account;
-import com.user.IAccount;
+import com.order.api.repository.MealRepository;
+import com.order.api.service.MealService;
+import com.order.repository.MealRepositoryImpl;
+import com.order.service.MealServiceImpl;
 
 public class Main {
     public static void main(String[] args) {
-        IOrder order = new Order();
-        IAccount account = new Account();
-        ICafe cafe = new Cafe();
-        IMenu menu = new Menu();
+        MealRepository mealRepository = new MealRepositoryImpl();
+        MealService mealService = new MealServiceImpl(mealRepository);
 
-        cafe.setMenu(menu);
-        order.setAccountsParameters(account);
-        order.setCafeParameters(cafe);
+        var meal = mealService.addMeal("sosiski", 200, 5);
+        var meal1 = mealService.addMeal("makaroshki", 200, 10);
+        var meals = mealService.getAll();
+        System.out.println(meals);
 
-        System.out.println(order.getAccountName(account, 0));
-        System.out.println(account.toString(0));
-        System.out.println(order.choizeOfMeal(cafe, 1));
+        System.out.println(meal.getNameOfMeal());
+        System.out.println(meal1.getId());
 
-        account.setAccount("Vlad", 50, "45325252");
-        System.out.println(account.toString(1));
+
+
+
 
     }
 }

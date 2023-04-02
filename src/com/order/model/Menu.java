@@ -1,9 +1,9 @@
-package com.menu;
+package com.order.model;
 
 import java.util.ArrayList;
 
-public class Menu implements IMenu {
-    @Override
+public class Menu {
+
     public ArrayList<Meal> getMenu() {
         ArrayList<Meal> menu = new ArrayList<>();
         Meal eggs = new Meal("eggs",34.5,54);
