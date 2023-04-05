@@ -14,6 +14,12 @@ public class Meal {
         this.priceOfMeal = priceOfMeal;
         this.cookingTime = cookingTime;
     }
+    public Meal(String nameOfMeal, double priceOfMeal, int cookingTime, UUID id){
+        this.nameOfMeal = nameOfMeal;
+        this.priceOfMeal = priceOfMeal;
+        this.cookingTime = cookingTime;
+        this.id = id;
+    }
 
 
 
@@ -25,7 +31,7 @@ public class Meal {
        this.priceOfMeal = priceOfMeal;
     }
 
-    public void setCookingTime(byte cookingTime) {
+    public void setCookingTime(int cookingTime) {
         this.cookingTime = cookingTime;
     }
 

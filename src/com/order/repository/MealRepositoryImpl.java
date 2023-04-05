@@ -17,12 +17,16 @@ public class MealRepositoryImpl implements MealRepository {
     }
 
     @Override
-    public Meal getMeal(int index){
-        return meals.get(index);
+    public Meal getMeal(UUID id){
+        var meal = meals.stream().filter(c -> id.equals(c.getId()))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Account not found"));
+        return meal;
+
     }
 
     @Override
-    public void deleteMealById(Long id){
+    public void deleteMealById(UUID id){
         var  meal = meals.stream()
                 .filter(c -> id.equals(c.getId()))
                 .findFirst().
@@ -37,6 +41,9 @@ public class MealRepositoryImpl implements MealRepository {
 
     @Override
     public void update(Meal meal){
+        getMeal(meal.getId()).setNameOfMeal(meal.getNameOfMeal());
+        getMeal(meal.getId()).setPriceOfMeal(meal.getPriceOfMeal());
+        getMeal(meal.getId()).setCookingTime(meal.getCookingTime());
 
     }
 }

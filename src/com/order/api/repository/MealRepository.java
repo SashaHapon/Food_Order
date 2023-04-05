@@ -3,14 +3,14 @@ package com.order.api.repository;
 import com.order.model.Meal;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface MealRepository {
 
     Meal addMeal(Meal meal);
+    Meal getMeal(UUID id);
 
-    Meal getMeal(int index);
-
-    void deleteMealById(Long id);
+    void deleteMealById(UUID id);
 
     List<Meal> getAllMeal();
 

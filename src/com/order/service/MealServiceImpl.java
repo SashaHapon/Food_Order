@@ -23,4 +23,21 @@ public class MealServiceImpl implements MealService {
         public Meal addMeal(String nameOfMeal, double priceOfMeal, int cookingTime){
                 return mealRepository.addMeal(new Meal(nameOfMeal,priceOfMeal,cookingTime));
         }
+        @Override
+        public Meal getMeal(UUID id){
+             return mealRepository.getMeal(id);
+        }
+
+        @Override
+        public void deleteMealById(UUID id) {
+                mealRepository.deleteMealById(id);
+        }
+
+        @Override
+        public void update(String nameOfMeal, double priceOfMeal, int cookingTime, UUID idChengingMeal) {
+                mealRepository.update(new Meal(nameOfMeal,priceOfMeal,cookingTime,idChengingMeal));
+        }
+
+
+
 }

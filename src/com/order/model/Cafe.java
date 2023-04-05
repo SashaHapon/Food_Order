@@ -3,13 +3,10 @@ package com.order.model;
 import java.util.ArrayList;
 
 public class Cafe {
-    String nameOfCafe;
-    int numberOfTables;
-    ArrayList<Meal> menu;
-
-    public Cafe(){}
-
-    public void setCafe(String nameOfCafe, int numberOfTables){
+    private String nameOfCafe;
+    private int numberOfTables;
+    private ArrayList<Meal> menu;
+    public Cafe(String nameOfCafe, int numberOfTables){
         this.nameOfCafe = nameOfCafe;
         this.numberOfTables = numberOfTables;
     }
@@ -17,7 +14,7 @@ public class Cafe {
         return menu;
     }
 
-
+    @Override
     public String toString() {
         return "Cafe{" +
                 "nameOfCafe='" + nameOfCafe + '\'' +

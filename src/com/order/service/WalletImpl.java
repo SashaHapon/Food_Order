@@ -3,19 +3,21 @@ package com.order.service;
 import com.order.api.repository.AccountRepository;
 import com.order.api.service.Wallet;
 
+import java.util.UUID;
+
 public class WalletImpl implements Wallet {
     @Override
-    public double getMoneyOnCard(AccountRepository moneyOnCard, int index) {
-        return moneyOnCard.getAccount(index).getMoneyOnCard();
+    public double getMoneyOnCard(AccountRepository moneyOnCard, UUID id) {
+        return moneyOnCard.getAccount(id).getMoneyOnCard();
     }
 
     @Override
-    public void enrollmentMoney(AccountRepository moneyOnCard, int index, double enrollmentMoney) {
-        moneyOnCard.getAccount(index).setMoneyOnCard(moneyOnCard.getAccount(index).getMoneyOnCard() + enrollmentMoney);
+    public void enrollmentMoney(AccountRepository moneyOnCard, UUID id, double enrollmentMoney) {
+        moneyOnCard.getAccount(id).setMoneyOnCard(moneyOnCard.getAccount(id).getMoneyOnCard() + enrollmentMoney);
     }
 
     @Override
-    public void writeOffMoneyOnCard(AccountRepository moneyOnCard, int index, double writeOffMoney) {
-        moneyOnCard.getAccount(index).setMoneyOnCard(moneyOnCard.getAccount(index).getMoneyOnCard() - writeOffMoney);
+    public void writeOffMoneyOnCard(AccountRepository moneyOnCard, UUID id, double writeOffMoney) {
+        moneyOnCard.getAccount(id).setMoneyOnCard(moneyOnCard.getAccount(id).getMoneyOnCard() - writeOffMoney);
     }
 }

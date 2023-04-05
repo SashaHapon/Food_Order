@@ -20,12 +20,15 @@ public class AccountRepositoryImpl implements AccountRepository {
     }
 
     @Override
-    public Account getAccount(int index) {
-        return accounts.get(index);
+    public Account getAccount(UUID id) {
+        var account = accounts.stream().filter(c -> id.equals(c.getId()))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Account not found"));
+        return account;
     }
 
     @Override
-    public void deleteAccountById(Long id) {
+    public void deleteAccountById(UUID id) {
         var  account = accounts.stream()
                 .filter(c -> id.equals(c.getId()))
                 .findFirst().
@@ -40,6 +43,8 @@ public class AccountRepositoryImpl implements AccountRepository {
 
     @Override
     public void update(Account account) {
+        getAccount(account.getId()).setAccountName(account.getAccountName());
+        getAccount(account.getId()).setPhoneNumber(account.getPhoneNumber());
 
     }
 }

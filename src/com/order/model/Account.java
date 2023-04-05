@@ -3,16 +3,21 @@ package com.order.model;
 import java.util.UUID;
 
 public class Account {
-    private String accountName;
+   private String accountName;
     private double moneyOnCard;
     private String phoneNumber;
     private UUID id;
 
     public Account(){};
-    Account(String accountName, double moneyOnCard, String phoneNumber){
+    public Account(String accountName, double moneyOnCard, String phoneNumber){
         this.accountName = accountName;
         this.moneyOnCard = moneyOnCard;
         this.phoneNumber = phoneNumber;
+    }
+    public Account(String accountName, String phoneNumber, UUID id){
+        this.accountName = accountName;
+        this.phoneNumber = phoneNumber;
+        this.id = id;
     }
 
     public String getAccountName() {
@@ -45,5 +50,15 @@ public class Account {
 
     public UUID getId() {
         return id;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "accountName='" + accountName + '\'' +
+                ", moneyOnCard=" + moneyOnCard +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", id=" + id +
+                '}';
     }
 }
