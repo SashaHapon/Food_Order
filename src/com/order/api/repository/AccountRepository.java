@@ -13,6 +13,6 @@ public interface AccountRepository {
 
     List<Account> getAllAccounts();
 
-    void update(Account account);
+    void update(String name, String phone, UUID idChengingAccount);
 
 }

@@ -1,5 +1,6 @@
 package com.order.service;
 import com.order.api.service.AccountService;
+import com.order.api.service.Wallet;
 import com.order.model.Account;
 import com.order.api.repository.AccountRepository;
 import java.util.List;
@@ -18,7 +19,6 @@ public class AccountServiceImpl implements AccountService {
     public Account addAccount(String accountName, double moneyOnCard, String phoneNumber) {
         return accountRepository.addAccount(new Account(accountName, moneyOnCard, phoneNumber));
     }
-
     @Override
     public Account getAccount(UUID id){
         return accountRepository.getAccount(id);
@@ -29,7 +29,7 @@ public class AccountServiceImpl implements AccountService {
     }
     @Override
     public void update(String name, String phone, UUID idChengingAccount){
-       accountRepository.update(new Account(name,phone,idChengingAccount));
+       accountRepository.update(name, phone, idChengingAccount);
 
     }
 }

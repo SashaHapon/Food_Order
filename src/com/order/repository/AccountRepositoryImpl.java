@@ -42,9 +42,11 @@ public class AccountRepositoryImpl implements AccountRepository {
     }
 
     @Override
-    public void update(Account account) {
-        getAccount(account.getId()).setAccountName(account.getAccountName());
-        getAccount(account.getId()).setPhoneNumber(account.getPhoneNumber());
-
+    public void update(String name, String phone, UUID idChengingAccount) {
+        var account = accounts.stream().filter(c -> idChengingAccount.equals(c.getId()))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Account not found"));
+        account.setAccountName(name);
+        account.setPhoneNumber(phone);
     }
 }
