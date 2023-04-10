@@ -4,14 +4,14 @@ import com.order.api.service.*;
 import com.order.repository.AccountRepositoryImpl;
 import com.order.repository.MealRepositoryImpl;
 import com.order.service.*;
-import com.order.service.Exception;
+import com.order.service.MyException;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
 public class Main {
-    public static void main(String[] args) throws IOException, Exception {
+    public static void main(String[] args) throws IOException, MyException {
 
         MealRepository mealRepository = new MealRepositoryImpl();
         MealService mealService = new MealServiceImpl(mealRepository);

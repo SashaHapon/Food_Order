@@ -3,6 +3,7 @@ package com.order.repository;
 import com.order.api.repository.AccountRepository;
 import com.order.model.Account;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -13,10 +14,9 @@ public class AccountRepositoryImpl implements AccountRepository {
 
     @Override
     public Account addAccount(Account account) {
-        account.setId(UUID.randomUUID());
-        accounts.add(account);
-        return account;
-
+            account.setId(UUID.randomUUID());
+            accounts.add(account);
+            return account;
     }
 
     @Override

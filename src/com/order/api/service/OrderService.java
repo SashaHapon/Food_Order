@@ -1,7 +1,7 @@
 package com.order.api.service;
 
 import com.order.model.Meal;
-import com.order.service.Exception;
+import com.order.service.MyException;
 
 import java.io.IOException;
 import java.util.List;
@@ -20,5 +20,5 @@ public interface OrderService {
 
     double applyDiscount(String discount);
 
-    void checkPayment() throws Exception, IOException;
+    void checkPayment() throws MyException, IOException;
 }

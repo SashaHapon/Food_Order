@@ -62,7 +62,7 @@ public class OrderServiceImpl implements OrderService {
         for (int i = 0; i < meals.size(); i++){
             orderSum += meals.get(i).getPriceOfMeal();
         }
-       return orderSum;
+        return orderSum;
     }
 
     @Override
@@ -72,14 +72,13 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void checkPayment() throws Exception, IOException {
+    public void checkPayment() throws MyException {
 
         try {
-            if (orderSum > accountService.getAccount(id).getMoneyOnCard()) throw new Exception("Not enought money", 1);
-        } catch (Exception e){
+            if (orderSum > accountService.getAccount(id).getMoneyOnCard()) throw new MyException("Not enought money", 1);
+        } catch (MyException e){
             System.out.println(e.getNumber());
             logger.info("no honey");
-
         }
     }
 
