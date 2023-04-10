@@ -1,11 +1,12 @@
 package com.order.service;
-
 import com.order.api.service.AccountService;
 import com.order.api.service.MealService;
 import com.order.api.service.Order;
 import com.order.api.service.Wallet;
 import com.order.model.Account;
 import com.order.model.Meal;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,10 +15,10 @@ public class OrderImpl implements Order {
     private AccountService accountService;
     private Wallet walletService;
 
-    List<Meal> meals;
-    Account account;
-    UUID id;
-    private Double orderSum;
+    private List<Meal> meals = new ArrayList<>();
+    private Account account;
+    private UUID id;
+    private Double orderSum = (double) 0;
 
 
 
@@ -29,19 +30,16 @@ public class OrderImpl implements Order {
         this.id = id;
     }
 
-    public Meal addMeal(Meal meal){
+    public void addMeal(Meal meal){
         meals.add(meal);
-        return meal;
     }
 
     public List<Meal> getAllMeals(){
         return meals;
     }
 
-    public Account setAccount() {
-        Account account = accountService.getAccount(id);
-        this.account = account;
-        return account;
+    public void setAccount(UUID  id) {
+        this.account = accountService.getAccount(id);
     }
 
     public double orderSum(){
@@ -50,8 +48,12 @@ public class OrderImpl implements Order {
         }
        return orderSum;
     }
+    public double applyDiscount(String discount){
+        orderSum *= Double.parseDouble(discount);
+        return orderSum;
+    }
     public boolean checkPayment(){
-        if (orderSum > accountService.getAccount(id).getMoneyOnCard()){
+        if (orderSum < accountService.getAccount(id).getMoneyOnCard()){
             return true;
         } else {
             return false;

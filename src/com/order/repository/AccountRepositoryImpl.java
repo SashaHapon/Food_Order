@@ -32,7 +32,7 @@ public class AccountRepositoryImpl implements AccountRepository {
         var  account = accounts.stream()
                 .filter(c -> id.equals(c.getId()))
                 .findFirst().
-                orElseThrow(() -> new RuntimeException("Meal not found"));
+                orElseThrow(() -> new RuntimeException("Account not found"));
         accounts.remove(account);
     }
 
