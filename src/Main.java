@@ -2,6 +2,7 @@ import com.order.api.repository.AccountRepository;
 import com.order.api.repository.MealRepository;
 import com.order.api.service.AccountService;
 import com.order.api.service.MealService;
+import com.order.api.service.Order;
 import com.order.api.service.Wallet;
 import com.order.repository.AccountRepositoryImpl;
 import com.order.repository.MealRepositoryImpl;
@@ -34,9 +35,8 @@ public class Main {
         var meal = mealService.addMeal("sosiski", 200, 5);
         var meal1 = mealService.addMeal("makaroshki", 200, 10);
         var meal2 = mealService.addMeal("Potatos", 65, 20);
-        var meals = mealService.getAll();
 
-        OrderImpl order = new OrderImpl(mealService,accountService,wallet,account.getId());
+        Order order = new OrderImpl(mealService,accountService,wallet,account.getId());
 
         order.setAccount(account.getId());
 
@@ -47,5 +47,7 @@ public class Main {
         order.orderSum();
         order.applyDiscount(properties.getProperty("discount"));
         order.checkPayment();
+
+        order.cookingTimeSum();
     }
 }
