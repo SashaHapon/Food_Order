@@ -1,11 +1,13 @@
 package com.order.api.service;
 
 import com.order.model.Meal;
+import com.order.service.Exception;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
-public interface Order {
+public interface OrderService {
     void addMeal(Meal meal);
 
     List<Meal> getAllMeals();
@@ -18,5 +20,5 @@ public interface Order {
 
     double applyDiscount(String discount);
 
-    boolean checkPayment();
+    void checkPayment() throws Exception, IOException;
 }

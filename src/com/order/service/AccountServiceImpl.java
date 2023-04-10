@@ -1,6 +1,5 @@
 package com.order.service;
 import com.order.api.service.AccountService;
-import com.order.api.service.Wallet;
 import com.order.model.Account;
 import com.order.api.repository.AccountRepository;
 import java.util.List;

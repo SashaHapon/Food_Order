@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-04-10T13:10:25.181652Z</date>
+  <millis>1681132225181</millis>
+  <nanos>652000</nanos>
+  <sequence>0</sequence>
+  <logger></logger>
+  <level>INFO</level>
+  <class>com.order.service.Logger</class>
+  <method>info</method>
+  <thread>1</thread>
+  <message>get Account</message>
+</record>
+<record>
+  <date>2023-04-10T13:10:25.364699600Z</date>
+  <millis>1681132225364</millis>
+  <nanos>699600</nanos>
+  <sequence>1</sequence>
+  <logger></logger>
+  <level>INFO</level>
+  <class>com.order.service.Logger</class>
+  <method>info</method>
+  <thread>1</thread>
+  <message>no honey</message>
+</record>
+</log>

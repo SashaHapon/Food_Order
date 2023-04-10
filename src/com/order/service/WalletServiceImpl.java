@@ -1,10 +1,10 @@
 package com.order.service;
 import com.order.api.service.AccountService;
-import com.order.api.service.Wallet;
+import com.order.api.service.WalletService;
 
 import java.util.UUID;
 
-public class WalletServiceImpl implements Wallet {
+public class WalletServiceImpl implements WalletService {
 
     private AccountService accountService;
     public WalletServiceImpl(AccountService accountService){

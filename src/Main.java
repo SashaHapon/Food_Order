@@ -1,23 +1,18 @@
 import com.order.api.repository.AccountRepository;
 import com.order.api.repository.MealRepository;
-import com.order.api.service.AccountService;
-import com.order.api.service.MealService;
-import com.order.api.service.Order;
-import com.order.api.service.Wallet;
+import com.order.api.service.*;
 import com.order.repository.AccountRepositoryImpl;
 import com.order.repository.MealRepositoryImpl;
-import com.order.service.AccountServiceImpl;
-import com.order.service.MealServiceImpl;
-import com.order.service.OrderImpl;
-import com.order.service.WalletServiceImpl;
+import com.order.service.*;
+import com.order.service.Exception;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, Exception {
+
         MealRepository mealRepository = new MealRepositoryImpl();
         MealService mealService = new MealServiceImpl(mealRepository);
 
@@ -25,18 +20,18 @@ public class Main {
         AccountService accountService = new AccountServiceImpl(accountRepository);
 
         Properties properties = new Properties();
-        FileInputStream in = new FileInputStream("src/resources/config.property");
+        FileInputStream in = new FileInputStream("src/resources/properties/config.property");
         properties.load(in);
 
-        Wallet wallet = new WalletServiceImpl(accountService);
+        WalletService wallet = new WalletServiceImpl(accountService);
 
-        var account = accountService.addAccount("Jack", 20,"+375449394875");
+        var account = accountService.addAccount("Jack", 100,"+375449394875");
 
         var meal = mealService.addMeal("sosiski", 200, 5);
         var meal1 = mealService.addMeal("makaroshki", 200, 10);
         var meal2 = mealService.addMeal("Potatos", 65, 20);
 
-        Order order = new OrderImpl(mealService,accountService,wallet,account.getId());
+        OrderService order = new OrderServiceImpl(mealService,accountService,wallet,account.getId());
 
         order.setAccount(account.getId());
 
@@ -47,7 +42,8 @@ public class Main {
         order.orderSum();
         order.applyDiscount(properties.getProperty("discount"));
         order.checkPayment();
-
         order.cookingTimeSum();
+
+
     }
 }

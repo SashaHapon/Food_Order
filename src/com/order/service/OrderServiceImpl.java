@@ -1,30 +1,32 @@
 package com.order.service;
-import com.order.api.service.AccountService;
-import com.order.api.service.MealService;
-import com.order.api.service.Order;
-import com.order.api.service.Wallet;
+
+import com.order.api.service.*;
 import com.order.model.Account;
 import com.order.model.Meal;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class OrderImpl implements Order {
+public class OrderServiceImpl implements OrderService {
+
+
     private MealService mealService;
     private AccountService accountService;
-    private Wallet walletService;
+    private WalletService walletService;
 
     private List<Meal> meals = new ArrayList<>();
     private Account account;
     private UUID id;
     private double orderSum;
     private int cookingTimeSum;
+    ILogger logger = new Logger();
 
 
 
 
-    public OrderImpl(MealService mealService, AccountService accountService, Wallet wallet, UUID id){
+    public OrderServiceImpl(MealService mealService, AccountService accountService, WalletService wallet, UUID id) throws IOException {
         this.mealService = mealService;
         this.accountService = accountService;
         this.walletService = wallet;
@@ -42,8 +44,9 @@ public class OrderImpl implements Order {
     }
 
     @Override
-    public void setAccount(UUID  id) {
+    public void setAccount(UUID id) {
         this.account = accountService.getAccount(id);
+        logger.info("get Account");
     }
 
     @Override
@@ -69,11 +72,14 @@ public class OrderImpl implements Order {
     }
 
     @Override
-    public boolean checkPayment(){
-        if (orderSum < accountService.getAccount(id).getMoneyOnCard()){
-            return true;
-        } else {
-            return false;
+    public void checkPayment() throws Exception, IOException {
+
+        try {
+            if (orderSum > accountService.getAccount(id).getMoneyOnCard()) throw new Exception("Not enought money", 1);
+        } catch (Exception e){
+            System.out.println(e.getNumber());
+            logger.info("no honey");
+
         }
     }
 
