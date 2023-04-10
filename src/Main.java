@@ -8,7 +8,7 @@ import com.order.repository.MealRepositoryImpl;
 import com.order.service.AccountServiceImpl;
 import com.order.service.MealServiceImpl;
 import com.order.service.OrderImpl;
-import com.order.service.WalletImpl;
+import com.order.service.WalletServiceImpl;
 
 public class Main {
     public static void main(String[] args) {
@@ -17,6 +17,8 @@ public class Main {
 
         AccountRepository accountRepository = new AccountRepositoryImpl();
         AccountService accountService = new AccountServiceImpl(accountRepository);
+
+
 
         var meal = mealService.addMeal("sosiski", 200, 5);
         var meal1 = mealService.addMeal("makaroshki", 200, 10);
@@ -34,17 +36,12 @@ public class Main {
         accountService.update("Jin", "+34824",  account.getId());
         System.out.println(account);
 
-        Wallet wallet = new WalletImpl();
-        System.out.println(wallet.getMoneyOnCard(accountService, account.getId()));
-        System.out.println(wallet.enrollmentMoney(accountService, account.getId(), 300));
-        System.out.println(wallet.writeOffMoneyOnCard(accountService,account.getId(), 40));
-        System.out.println(wallet.getMoneyOnCard(accountService, account.getId()));
+        Wallet wallet = new WalletServiceImpl(accountService);
 
-        System.out.println(wallet.orderSum(meals));
 
         OrderImpl order = new OrderImpl(mealService,accountService,wallet,account.getId());
 
-        System.out.println(order.getAccount());
+        System.out.println(order.setAccount());
         System.out.println(order.getAllMeals());
 
     }

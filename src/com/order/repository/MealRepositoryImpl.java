@@ -40,10 +40,12 @@ public class MealRepositoryImpl implements MealRepository {
     }
 
     @Override
-    public void update(Meal meal){
-        getMeal(meal.getId()).setNameOfMeal(meal.getNameOfMeal());
-        getMeal(meal.getId()).setPriceOfMeal(meal.getPriceOfMeal());
-        getMeal(meal.getId()).setCookingTime(meal.getCookingTime());
-
+    public void update(String nameOfMeal, double priceOfMeal, int cookingTime, UUID idChengingMeal) {
+        var meal = meals.stream().filter(c -> idChengingMeal.equals(c.getId()))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Meal not found"));
+        meal.setNameOfMeal(nameOfMeal);
+        meal.setPriceOfMeal(priceOfMeal);
+        meal.setCookingTime(cookingTime);
+        }
     }
-}

@@ -35,7 +35,7 @@ public class MealServiceImpl implements MealService {
 
         @Override
         public void update(String nameOfMeal, double priceOfMeal, int cookingTime, UUID idChengingMeal) {
-                mealRepository.update(new Meal(nameOfMeal,priceOfMeal,cookingTime,idChengingMeal));
+                mealRepository.update(nameOfMeal,priceOfMeal,cookingTime,idChengingMeal);
         }
 
 

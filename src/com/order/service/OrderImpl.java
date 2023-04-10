@@ -10,52 +10,60 @@ import java.util.List;
 import java.util.UUID;
 
 public class OrderImpl implements Order {
-    MealService meal;
-    AccountService accountService;
-    Wallet wallet;
+    private MealService mealService;
+    private AccountService accountService;
+    private Wallet walletService;
 
     List<Meal> meals;
-
     Account account;
-
     UUID id;
+    private Double orderSum;
 
 
 
 
     public OrderImpl(MealService mealService, AccountService accountService, Wallet wallet, UUID id){
-        this.meal = mealService;
+        this.mealService = mealService;
         this.accountService = accountService;
-        this.wallet = wallet;
+        this.walletService = wallet;
         this.id = id;
     }
 
-    public List<Meal> getMeal(){
-        return null;
+    public Meal addMeal(Meal meal){
+        meals.add(meal);
+        return meal;
     }
 
     public List<Meal> getAllMeals(){
-        meals = meal.getAll();
         return meals;
     }
 
-    public Account getAccount() {
+    public Account setAccount() {
         Account account = accountService.getAccount(id);
-        account.setId(id);
         this.account = account;
         return account;
     }
 
-    public void priceOfMeals(){
-       // wallet.getMoneyOnCard();
+    public double orderSum(){
+        for (int i = 0; i < meals.size(); i++){
+            orderSum += meals.get(i).getPriceOfMeal();
+        }
+       return orderSum;
+    }
+    public boolean checkPayment(){
+        if (orderSum > accountService.getAccount(id).getMoneyOnCard()){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
     public String toString() {
         return "OrderImpl{" +
-                "meal=" + meal +
+                "meal=" + mealService +
                 ", accountService=" + accountService +
-                ", wallet=" + wallet +
+                ", wallet=" + walletService +
                 ", meals=" + meals +
                 ", account=" + account +
                 ", id=" + id +

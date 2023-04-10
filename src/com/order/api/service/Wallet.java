@@ -7,10 +7,6 @@ import java.util.List;
 import java.util.UUID;
 
 public interface Wallet {
-    double getMoneyOnCard(AccountService accountService, UUID id);
-
-    double orderSum(List<Meal> mealService);
-
-    double enrollmentMoney(AccountService accountService, UUID id, double enrollmentMoney);
-    double writeOffMoneyOnCard(AccountService accountService, UUID id, double writeOffMoney);
+    double enrollmentMoney(UUID id, double enrollmentMoney);
+    double writeOffMoneyOnCard(UUID id, double writeOffMoney);
 }
