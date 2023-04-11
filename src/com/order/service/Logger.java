@@ -8,7 +8,7 @@ import java.util.logging.Handler;
 
 public class Logger implements ILogger {
     private static  final java.util.logging.Logger logger = java.util.logging.Logger.getLogger("");
-    Handler fileHandler = new FileHandler("src/resources/log/log.txt");
+    private Handler fileHandler = new FileHandler("src/resources/log/log.txt");
 
     public Logger() throws IOException {
         logger.setUseParentHandlers(false);

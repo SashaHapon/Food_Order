@@ -21,7 +21,7 @@ public class OrderServiceImpl implements OrderService {
     private UUID id;
     private double orderSum;
     private int cookingTimeSum;
-    ILogger logger = new Logger();
+    private final ILogger LOGGER = new Logger();
 
 
 
@@ -46,7 +46,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void setAccount(UUID id) {
         this.account = accountService.getAccount(id);
-        logger.info("get Account");
+        LOGGER.info("get Account");
     }
 
     @Override
