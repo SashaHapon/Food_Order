@@ -63,6 +63,7 @@ public class OrderServiceImpl implements OrderService {
         for (int i = 0; i < order.getMeals().size(); i++){
             orderSum += order.getMeals().get(i).getPriceOfMeal();
         }
+        order.setOrderSum(orderSum);
         return orderSum;
     }
 
