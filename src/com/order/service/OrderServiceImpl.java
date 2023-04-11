@@ -3,6 +3,7 @@ package com.order.service;
 import com.order.api.service.*;
 import com.order.model.Account;
 import com.order.model.Meal;
+import com.order.model.Order;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,81 +17,72 @@ public class OrderServiceImpl implements OrderService {
     private AccountService accountService;
     private WalletService walletService;
 
-    private List<Meal> meals = new ArrayList<>();
-    private Account account;
-    private UUID id;
-    private double orderSum;
-    private int cookingTimeSum;
     private final ILogger LOGGER = new Logger();
 
+    private Order order;
 
 
 
-    public OrderServiceImpl(MealService mealService, AccountService accountService, WalletService wallet, UUID id) throws IOException {
+    public OrderServiceImpl(MealService mealService, AccountService accountService, WalletService wallet, Order order) throws IOException {
         this.mealService = mealService;
         this.accountService = accountService;
         this.walletService = wallet;
-        this.id = id;
+        this.order = order;
+
     }
 
     @Override
     public void addMeal(Meal meal){
-        meals.add(meal);
+        order.addMeal(meal);
     }
 
     @Override
     public List<Meal> getAllMeals(){
-        return meals;
+        return order.getMeals();
     }
 
     @Override
     public void setAccount(UUID id) {
-        this.account = accountService.getAccount(id);
+        order.setAccount(accountService.getAccount(id));
         LOGGER.info("get Account");
     }
 
     @Override
     public int cookingTimeSum(){
-        for (int i = 0; i < meals.size(); i++){
-            cookingTimeSum += meals.get(i).getCookingTime();
+        int cookingTimeSum = 0;
+        for (int i = 0; i < order.getMeals().size(); i++){
+            cookingTimeSum += order.getMeals().get(i).getCookingTime();
         }
+        order.setCookingTimeSum(cookingTimeSum);
         return cookingTimeSum;
     }
 
     @Override
     public double orderSum(){
-        for (int i = 0; i < meals.size(); i++){
-            orderSum += meals.get(i).getPriceOfMeal();
+        double orderSum = 0;
+        for (int i = 0; i < order.getMeals().size(); i++){
+            orderSum += order.getMeals().get(i).getPriceOfMeal();
         }
         return orderSum;
     }
 
     @Override
     public double applyDiscount(String discount){
-        orderSum *= Double.parseDouble(discount);
-        return orderSum;
+        double discountPrise = order.getOrderSum();
+        discountPrise *= Double.parseDouble(discount);
+        order.setOrderSum(discountPrise);
+        return discountPrise;
     }
 
     @Override
     public void checkPayment() throws MyException {
 
         try {
-            if (orderSum > accountService.getAccount(id).getMoneyOnCard()) throw new MyException("Not enought money", 1);
+            if (order.getOrderSum() > accountService.getAccount(order.getAccount().getId()).getMoneyOnCard()) throw new MyException("Not enought money", 1);
         } catch (MyException e){
             System.out.println(e.getNumber());
-            logger.info("no honey");
+            LOGGER.info("no honey");
         }
     }
 
-    @Override
-    public String toString() {
-        return "OrderImpl{" +
-                "meal=" + mealService +
-                ", accountService=" + accountService +
-                ", wallet=" + walletService +
-                ", meals=" + meals +
-                ", account=" + account +
-                ", id=" + id +
-                '}';
-    }
 }

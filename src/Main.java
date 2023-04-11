@@ -1,6 +1,7 @@
 import com.order.api.repository.AccountRepository;
 import com.order.api.repository.MealRepository;
 import com.order.api.service.*;
+import com.order.model.Order;
 import com.order.repository.AccountRepositoryImpl;
 import com.order.repository.MealRepositoryImpl;
 import com.order.service.*;
@@ -23,7 +24,7 @@ public class Main {
         FileInputStream in = new FileInputStream("src/resources/properties/config.property");
         properties.load(in);
 
-        WalletService wallet = new WalletServiceImpl(accountService);
+        WalletService walletService = new WalletServiceImpl(accountService);
 
         var account = accountService.addAccount("Jack", 100,"+375449394875");
 
@@ -31,18 +32,19 @@ public class Main {
         var meal1 = mealService.addMeal("makaroshki", 200, 10);
         var meal2 = mealService.addMeal("Potatos", 65, 20);
 
-        OrderService order = new OrderServiceImpl(mealService,accountService,wallet,account.getId());
+        Order order = new Order();
+        OrderService orderService = new OrderServiceImpl(mealService,accountService,walletService, order);
 
-        order.setAccount(account.getId());
+        orderService.setAccount(account.getId());
 
-        order.addMeal(meal2);
-        order.addMeal(meal);
-        order.addMeal(meal1);
+        orderService.addMeal(meal2);
+        orderService.addMeal(meal);
+        orderService.addMeal(meal1);
 
-        order.orderSum();
-        order.applyDiscount(properties.getProperty("discount"));
-        order.checkPayment();
-        order.cookingTimeSum();
+        orderService.orderSum();
+        orderService.applyDiscount(properties.getProperty("discount"));
+        orderService.checkPayment();
+        orderService.cookingTimeSum();
 
 
     }
