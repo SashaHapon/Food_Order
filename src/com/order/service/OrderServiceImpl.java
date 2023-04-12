@@ -35,7 +35,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void addMeal(Meal meal, UUID idOrder){
-        orderRepository.getOrder(idOrder).addMeal(meal);
+        orderRepository.getOrder(idOrder).getMeals().add(meal);
     }
 
     @Override

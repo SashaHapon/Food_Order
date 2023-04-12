@@ -2,7 +2,6 @@ import com.order.api.repository.AccountRepository;
 import com.order.api.repository.MealRepository;
 import com.order.api.repository.OrderRepository;
 import com.order.api.service.*;
-import com.order.model.Order;
 import com.order.repository.AccountRepositoryImpl;
 import com.order.repository.MealRepositoryImpl;
 import com.order.repository.OrderRepositoryImpl;

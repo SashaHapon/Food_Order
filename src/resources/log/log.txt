@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2023-04-12T13:34:27.916386100Z</date>
-  <millis>1681306467916</millis>
-  <nanos>386100</nanos>
+  <date>2023-04-12T15:42:16.298760700Z</date>
+  <millis>1681314136298</millis>
+  <nanos>760700</nanos>
   <sequence>0</sequence>
   <logger></logger>
   <level>INFO</level>
@@ -14,9 +14,9 @@
   <message>get Account</message>
 </record>
 <record>
-  <date>2023-04-12T13:34:28.037341900Z</date>
-  <millis>1681306468037</millis>
-  <nanos>341900</nanos>
+  <date>2023-04-12T15:42:16.571201200Z</date>
+  <millis>1681314136571</millis>
+  <nanos>201200</nanos>
   <sequence>1</sequence>
   <logger></logger>
   <level>INFO</level>

@@ -12,11 +12,6 @@ public class Order {
     private double orderSum;
     private int cookingTimeSum;
 
-    public Meal addMeal(Meal meal){
-        meals.add(meal);
-        return meal;
-    }
-
     public List<Meal> getMeals() {
         return meals;
     }
