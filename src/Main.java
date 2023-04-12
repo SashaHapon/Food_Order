@@ -32,19 +32,7 @@ public class Main {
         var meal1 = mealService.addMeal("makaroshki", 200, 10);
         var meal2 = mealService.addMeal("Potatos", 65, 20);
 
-        Order order = new Order();
-        OrderService orderService = new OrderServiceImpl(mealService,accountService,walletService, order);
 
-        orderService.setAccount(account.getId());
-
-        orderService.addMeal(meal2);
-        orderService.addMeal(meal);
-        orderService.addMeal(meal1);
-
-        orderService.orderSum();
-        orderService.applyDiscount(properties.getProperty("discount"));
-        orderService.checkPayment();
-        orderService.cookingTimeSum();
 
 
     }

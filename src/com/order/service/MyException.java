@@ -1,6 +1,7 @@
 package com.order.service;
-
-public class MyException extends java.lang.Exception {
+import java.lang.Exception;
+public class MyException{
+    private Exception e = new Exception();
     private int number;
 
     public int getNumber() {
@@ -9,7 +10,7 @@ public class MyException extends java.lang.Exception {
 
     public MyException(String message, int num) {
 
-        super(message);
+       // super(message);
         number = num;
     }
 }

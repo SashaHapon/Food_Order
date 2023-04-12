@@ -16,34 +16,34 @@ public class OrderServiceImpl implements OrderService {
     private MealService mealService;
     private AccountService accountService;
     private WalletService walletService;
+    private OrderService orderService;
 
     private final ILogger LOGGER = new Logger();
 
-    private Order order;
 
 
-
-    public OrderServiceImpl(MealService mealService, AccountService accountService, WalletService wallet, Order order) throws IOException {
-        this.mealService = mealService;
+    public OrderServiceImpl(AccountService accountService, OrderService orderService) throws IOException {
+        //this.mealService = mealService;
         this.accountService = accountService;
-        this.walletService = wallet;
-        this.order = order;
-
+        //this.walletService = walletService;
+        this.orderService = orderService;
     }
 
     @Override
     public void addMeal(Meal meal){
-        order.addMeal(meal);
+        orderService.addMeal(meal);
+
     }
 
     @Override
     public List<Meal> getAllMeals(){
-        return order.getMeals();
+
+        return orderService.getAllMeals();
     }
 
     @Override
     public void setAccount(UUID id) {
-        order.setAccount(accountService.getAccount(id));
+        orderService.setAccount(accountService.getAccount(id).getId());
         LOGGER.info("get Account");
     }
 
