@@ -6,20 +6,20 @@ import java.util.UUID;
 
 public class WalletServiceImpl implements WalletService {
 
-    private AccountService accountService;
+    private final AccountService accountService;
     public WalletServiceImpl(AccountService accountService){
         this.accountService = accountService;
     }
 
     @Override
-    public double enrollmentMoney(UUID id, double enrollmentMoney) {
-        accountService.getAccount(id).setMoneyOnCard(accountService.getAccount(id).getMoneyOnCard() + enrollmentMoney);
+    public double enrollmentMoney(UUID idAccount, double enrollmentMoney) {
+        accountService.getAccount(idAccount).setMoneyOnCard(accountService.getAccount(idAccount).getMoneyOnCard() + enrollmentMoney);
         return enrollmentMoney;
     }
 
     @Override
-    public double writeOffMoneyOnCard(UUID id, double writeOffMoney) {
-        accountService.getAccount(id).setMoneyOnCard(accountService.getAccount(id).getMoneyOnCard() - writeOffMoney);
+    public double writeOffMoneyOnCard(UUID idAccount, double writeOffMoney) {
+        accountService.getAccount(idAccount).setMoneyOnCard(accountService.getAccount(idAccount).getMoneyOnCard() - writeOffMoney);
         return writeOffMoney;
     }
 }

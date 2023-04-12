@@ -1,12 +1,12 @@
 package com.order.service;
 
+import com.order.api.repository.OrderRepository;
 import com.order.api.service.*;
 import com.order.model.Account;
 import com.order.model.Meal;
 import com.order.model.Order;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,68 +18,70 @@ public class OrderServiceImpl implements OrderService {
     private WalletService walletService;
     private OrderService orderService;
 
+    OrderRepository orderRepository;
+
     private final ILogger LOGGER = new Logger();
 
 
 
-    public OrderServiceImpl(AccountService accountService, OrderService orderService) throws IOException {
-        //this.mealService = mealService;
-        this.accountService = accountService;
-        //this.walletService = walletService;
-        this.orderService = orderService;
+    public OrderServiceImpl(OrderRepository orderRepository) throws IOException {
+        this.orderRepository= orderRepository;
     }
 
     @Override
-    public void addMeal(Meal meal){
-        orderService.addMeal(meal);
-
+    public Order createOrder(){
+        return orderRepository.createOrder();
     }
 
     @Override
-    public List<Meal> getAllMeals(){
-
-        return orderService.getAllMeals();
+    public void addMeal(Meal meal, UUID idOrder){
+        orderRepository.getOrder(idOrder).addMeal(meal);
     }
 
     @Override
-    public void setAccount(UUID id) {
-        orderService.setAccount(accountService.getAccount(id).getId());
+    public List<Meal> getAllMeals(UUID idOrder){
+        return orderRepository.getOrder(idOrder).getMeals();
+    }
+
+    @Override
+    public void setAccount(UUID idOrder, Account account) {
+        orderRepository.getOrder(idOrder).setAccount(account);
         LOGGER.info("get Account");
     }
 
     @Override
-    public int cookingTimeSum(){
+    public int cookingTimeSum(UUID idOrder){
         int cookingTimeSum = 0;
-        for (int i = 0; i < order.getMeals().size(); i++){
-            cookingTimeSum += order.getMeals().get(i).getCookingTime();
+        for (int i = 0; i < orderRepository.getOrder(idOrder).getMeals().size(); i++){
+            cookingTimeSum += orderRepository.getOrder(idOrder).getMeals().get(i).getCookingTime();
         }
-        order.setCookingTimeSum(cookingTimeSum);
+        orderRepository.getOrder(idOrder).setCookingTimeSum(cookingTimeSum);
         return cookingTimeSum;
     }
 
     @Override
-    public double orderSum(){
+    public double orderSum(UUID idOrder){
         double orderSum = 0;
-        for (int i = 0; i < order.getMeals().size(); i++){
-            orderSum += order.getMeals().get(i).getPriceOfMeal();
+        for (int i = 0; i < orderRepository.getOrder(idOrder).getMeals().size(); i++){
+            orderSum += orderRepository.getOrder(idOrder).getMeals().get(i).getPriceOfMeal();
         }
-        order.setOrderSum(orderSum);
+        orderRepository.getOrder(idOrder).setOrderSum(orderSum);
         return orderSum;
     }
 
     @Override
-    public double applyDiscount(String discount){
-        double discountPrise = order.getOrderSum();
+    public double applyDiscount(String discount, UUID idOrder){
+        double discountPrise = orderRepository.getOrder(idOrder).getOrderSum();
         discountPrise *= Double.parseDouble(discount);
-        order.setOrderSum(discountPrise);
+        orderRepository.getOrder(idOrder).setOrderSum(discountPrise);
         return discountPrise;
     }
 
     @Override
-    public void checkPayment() throws MyException {
+    public void checkPayment(UUID idOrder) throws MyException {
 
         try {
-            if (order.getOrderSum() > accountService.getAccount(order.getAccount().getId()).getMoneyOnCard()) throw new MyException("Not enought money", 1);
+            if (orderRepository.getOrder(idOrder).getOrderSum() > orderRepository.getOrder(idOrder).getAccount().getMoneyOnCard()) throw new MyException("Not enought money", 1);
         } catch (MyException e){
             System.out.println(e.getNumber());
             LOGGER.info("no honey");

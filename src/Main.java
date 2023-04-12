@@ -1,15 +1,18 @@
 import com.order.api.repository.AccountRepository;
 import com.order.api.repository.MealRepository;
+import com.order.api.repository.OrderRepository;
 import com.order.api.service.*;
 import com.order.model.Order;
 import com.order.repository.AccountRepositoryImpl;
 import com.order.repository.MealRepositoryImpl;
+import com.order.repository.OrderRepositoryImpl;
 import com.order.service.*;
 import com.order.service.MyException;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.UUID;
 
 public class Main {
     public static void main(String[] args) throws IOException, MyException {
@@ -32,6 +35,19 @@ public class Main {
         var meal1 = mealService.addMeal("makaroshki", 200, 10);
         var meal2 = mealService.addMeal("Potatos", 65, 20);
 
+        OrderRepository orderRepository = new OrderRepositoryImpl();
+        OrderService orderService = new OrderServiceImpl(orderRepository);
+
+        var order = orderService.createOrder();
+        UUID orderId = order.getId();
+        orderService.setAccount(orderId, account);
+        orderService.addMeal(meal, orderId);
+        orderService.addMeal(meal1, orderId);
+        orderService.getAllMeals(orderId);
+        orderService.cookingTimeSum(orderId);
+        orderService.orderSum(orderId);
+        orderService.applyDiscount(properties.getProperty("discount"), orderId);
+        orderService.checkPayment(orderId);
 
 
 

@@ -12,7 +12,9 @@ public class OrderRepositoryImpl implements OrderRepository {
 
     private List<Order> orders = new ArrayList<>();
     @Override
-    public Order addOrder(Order order) {
+    public Order createOrder() {
+        Order order = new Order();
+        order.setId(UUID.randomUUID());
         orders.add(order);
         return order;
     }

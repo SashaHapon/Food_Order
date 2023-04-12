@@ -1,6 +1,6 @@
 package com.order.service;
 import java.lang.Exception;
-public class MyException{
+public class MyException extends Throwable {
     private Exception e = new Exception();
     private int number;
 

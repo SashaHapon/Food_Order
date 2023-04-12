@@ -56,4 +56,15 @@ public class Order {
     public void setCookingTimeSum(int cookingTimeSum) {
         this.cookingTimeSum = cookingTimeSum;
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "meals=" + meals +
+                ", account=" + account +
+                ", id=" + id +
+                ", orderSum=" + orderSum +
+                ", cookingTimeSum=" + cookingTimeSum +
+                '}';
+    }
 }

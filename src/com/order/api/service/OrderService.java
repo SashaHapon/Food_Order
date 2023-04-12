@@ -1,24 +1,26 @@
 package com.order.api.service;
-
+import com.order.model.Account;
 import com.order.model.Meal;
+import com.order.model.Order;
 import com.order.service.MyException;
-
-import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
 public interface OrderService {
-    void addMeal(Meal meal);
 
-    List<Meal> getAllMeals();
+    Order createOrder();
 
-    void setAccount(UUID id);
+    void addMeal(Meal meal, UUID idOrder);
 
-    int cookingTimeSum();
+    List<Meal> getAllMeals(UUID idOrder);
 
-    double orderSum();
+    void setAccount(UUID idOrder, Account account);
 
-    double applyDiscount(String discount);
+    int cookingTimeSum(UUID idOrder);
 
-    void checkPayment() throws MyException, IOException;
+    double orderSum(UUID idOrder);
+
+    double applyDiscount(String discount, UUID idOrder);
+
+    void checkPayment(UUID idOrder) throws MyException;
 }
