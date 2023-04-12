@@ -12,17 +12,8 @@ import java.util.UUID;
 
 public class OrderServiceImpl implements OrderService {
 
-
-    private MealService mealService;
-    private AccountService accountService;
-    private WalletService walletService;
-    private OrderService orderService;
-
     OrderRepository orderRepository;
-
     private final ILogger LOGGER = new Logger();
-
-
 
     public OrderServiceImpl(OrderRepository orderRepository) throws IOException {
         this.orderRepository= orderRepository;
@@ -30,21 +21,25 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order createOrder(){
+
         return orderRepository.createOrder();
     }
 
     @Override
     public void addMeal(Meal meal, UUID idOrder){
+
         orderRepository.getOrder(idOrder).getMeals().add(meal);
     }
 
     @Override
     public List<Meal> getAllMeals(UUID idOrder){
+
         return orderRepository.getOrder(idOrder).getMeals();
     }
 
     @Override
     public void setAccount(UUID idOrder, Account account) {
+
         orderRepository.getOrder(idOrder).setAccount(account);
         LOGGER.info("get Account");
     }
@@ -84,7 +79,7 @@ public class OrderServiceImpl implements OrderService {
             if (orderRepository.getOrder(idOrder).getOrderSum() > orderRepository.getOrder(idOrder).getAccount().getMoneyOnCard()) throw new MyException("Not enought money", 1);
         } catch (MyException e){
             System.out.println(e.getNumber());
-            LOGGER.info("no honey");
+
         }
     }
 
