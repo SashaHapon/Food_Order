@@ -37,14 +37,11 @@ public class Main {
         OrderRepository orderRepository = new OrderRepositoryImpl();
         OrderService orderService = new OrderServiceImpl(orderRepository);
 
-        var order = orderService.createOrder();
+        var order = orderService.createOrder(account, mealRepository.getAllMeal());
         UUID orderId = order.getId();
-        orderService.setAccount(orderId, account);
         orderService.addMeal(meal, orderId);
         orderService.addMeal(meal1, orderId);
         orderService.getAllMeals(orderId);
-        orderService.cookingTimeSum(orderId);
-        orderService.orderSum(orderId);
         orderService.applyDiscount(properties.getProperty("discount"), orderId);
         orderService.checkPayment(orderId);
 

@@ -1,35 +1,47 @@
 package com.order.service;
 
 import com.order.api.repository.OrderRepository;
-import com.order.api.service.*;
+import com.order.api.service.ILogger;
+import com.order.api.service.OrderService;
 import com.order.model.Account;
 import com.order.model.Meal;
 import com.order.model.Order;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
 public class OrderServiceImpl implements OrderService {
+//todo read Java Naming Convention
+    private static final ILogger LOGGER = new Logger();
+    private OrderRepository orderRepository;
 
-    OrderRepository orderRepository;
-    private final ILogger LOGGER = new Logger();
-
-    public OrderServiceImpl(OrderRepository orderRepository) throws IOException {
+    public OrderServiceImpl(OrderRepository orderRepository) {
         this.orderRepository= orderRepository;
     }
 
     @Override
-    public Order createOrder(){
-
-        return orderRepository.createOrder();
+    public Order createOrder(Account account, List<Meal> meals) {
+        var order = new Order();
+        order.setAccount(account);
+        order.setMeals(meals);
+        cookingTimeSum(order);
+        orderRepository.createOrder(order);
+        return order;
     }
 
     @Override
     public void addMeal(Meal meal, UUID idOrder){
+        var order = orderRepository.getOrder(idOrder);
+        order.getMeals().add(meal);
+        order.setCookingTimeSum(order.getCookingTimeSum() + meal.getCookingTime());
 
-        orderRepository.getOrder(idOrder).getMeals().add(meal);
     }
+
+    @Override
+    public void remove(Meal meal, UUID idOrder){
+        var order = orderRepository.getOrder(idOrder);
+        order.getMeals().remove(meal);
+        order.setCookingTimeSum(order.getCookingTimeSum() - meal.getCookingTime());}
 
     @Override
     public List<Meal> getAllMeals(UUID idOrder){
@@ -37,25 +49,16 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.getOrder(idOrder).getMeals();
     }
 
-    @Override
-    public void setAccount(UUID idOrder, Account account) {
-
-        orderRepository.getOrder(idOrder).setAccount(account);
-        LOGGER.info("get Account");
-    }
-
-    @Override
-    public int cookingTimeSum(UUID idOrder){
+    private int cookingTimeSum(Order order){
         int cookingTimeSum = 0;
-        for (int i = 0; i < orderRepository.getOrder(idOrder).getMeals().size(); i++){
-            cookingTimeSum += orderRepository.getOrder(idOrder).getMeals().get(i).getCookingTime();
+        for (Meal meal : order.getMeals()) {
+            cookingTimeSum += meal.getCookingTime();
         }
-        orderRepository.getOrder(idOrder).setCookingTimeSum(cookingTimeSum);
+        order.setCookingTimeSum(cookingTimeSum);
         return cookingTimeSum;
     }
 
-    @Override
-    public double orderSum(UUID idOrder){
+    private double orderSum(UUID idOrder){
         double orderSum = 0;
         for (int i = 0; i < orderRepository.getOrder(idOrder).getMeals().size(); i++){
             orderSum += orderRepository.getOrder(idOrder).getMeals().get(i).getPriceOfMeal();
@@ -76,10 +79,12 @@ public class OrderServiceImpl implements OrderService {
     public void checkPayment(UUID idOrder) throws MyException {
 
         try {
-            if (orderRepository.getOrder(idOrder).getOrderSum() > orderRepository.getOrder(idOrder).getAccount().getMoneyOnCard()) throw new MyException("Not enought money", 1);
+            if (orderRepository.getOrder(idOrder).getOrderSum() > orderRepository.getOrder(idOrder)
+                    .getAccount()
+                    .getMoneyOnCard())
+                     throw new MyException("Not enought money", 1);
         } catch (MyException e){
             System.out.println(e.getNumber());
-
         }
     }
 

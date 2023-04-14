@@ -8,17 +8,13 @@ import java.util.UUID;
 
 public interface OrderService {
 
-    Order createOrder();
+    Order createOrder(Account account, List<Meal> meals);
 
     void addMeal(Meal meal, UUID idOrder);
 
+    void remove(Meal meal, UUID idOrder);
+
     List<Meal> getAllMeals(UUID idOrder);
-
-    void setAccount(UUID idOrder, Account account);
-
-    int cookingTimeSum(UUID idOrder);
-
-    double orderSum(UUID idOrder);
 
     double applyDiscount(String discount, UUID idOrder);
 

@@ -1,16 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
-<record>
-  <date>2023-04-12T16:27:07.596188500Z</date>
-  <millis>1681316827596</millis>
-  <nanos>188500</nanos>
-  <sequence>0</sequence>
-  <logger></logger>
-  <level>INFO</level>
-  <class>com.order.service.Logger</class>
-  <method>info</method>
-  <thread>1</thread>
-  <message>get Account</message>
-</record>
 </log>
