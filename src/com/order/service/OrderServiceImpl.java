@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.UUID;
 
 public class OrderServiceImpl implements OrderService {
-//todo read Java Naming Convention
+
     private static final ILogger LOGGER = new Logger();
     private OrderRepository orderRepository;
 
@@ -34,14 +34,14 @@ public class OrderServiceImpl implements OrderService {
         var order = orderRepository.getOrder(idOrder);
         order.getMeals().add(meal);
         order.setCookingTimeSum(order.getCookingTimeSum() + meal.getCookingTime());
-
     }
 
     @Override
     public void remove(Meal meal, UUID idOrder){
         var order = orderRepository.getOrder(idOrder);
         order.getMeals().remove(meal);
-        order.setCookingTimeSum(order.getCookingTimeSum() - meal.getCookingTime());}
+        order.setCookingTimeSum(order.getCookingTimeSum() - meal.getCookingTime());
+    }
 
     @Override
     public List<Meal> getAllMeals(UUID idOrder){
