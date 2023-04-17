@@ -24,6 +24,7 @@ public class OrderServiceImpl implements OrderService {
         var order = new Order();
         order.setAccount(account);
         order.setMeals(meals);
+        orderSum(order);
         cookingTimeSum(order);
         orderRepository.createOrder(order);
         return order;
@@ -33,6 +34,7 @@ public class OrderServiceImpl implements OrderService {
     public void addMeal(Meal meal, UUID idOrder){
         var order = orderRepository.getOrder(idOrder);
         order.getMeals().add(meal);
+        order.setOrderSum(order.getOrderSum() + meal.getPriceOfMeal());
         order.setCookingTimeSum(order.getCookingTimeSum() + meal.getCookingTime());
     }
 
@@ -58,12 +60,12 @@ public class OrderServiceImpl implements OrderService {
         return cookingTimeSum;
     }
 
-    private double orderSum(UUID idOrder){
+    private double orderSum(Order order){
         double orderSum = 0;
-        for (int i = 0; i < orderRepository.getOrder(idOrder).getMeals().size(); i++){
-            orderSum += orderRepository.getOrder(idOrder).getMeals().get(i).getPriceOfMeal();
+        for (int i = 0; i < order.getMeals().size(); i++){
+            orderSum += order.getMeals().get(i).getPriceOfMeal();
         }
-        orderRepository.getOrder(idOrder).setOrderSum(orderSum);
+        order.setOrderSum(orderSum);
         return orderSum;
     }
 
@@ -77,15 +79,11 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void checkPayment(UUID idOrder) throws MyException {
-
-        try {
             if (orderRepository.getOrder(idOrder).getOrderSum() > orderRepository.getOrder(idOrder)
                     .getAccount()
                     .getMoneyOnCard())
                      throw new MyException("Not enought money", 1);
-        } catch (MyException e){
-            System.out.println(e.getNumber());
-        }
+
     }
 
 }

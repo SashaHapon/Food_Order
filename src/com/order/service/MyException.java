@@ -1,7 +1,6 @@
 package com.order.service;
 import java.lang.Exception;
-public class MyException extends Throwable {
-    private Exception e = new Exception();
+public class MyException extends RuntimeException {
     private int number;
 
     public int getNumber() {
@@ -10,7 +9,7 @@ public class MyException extends Throwable {
 
     public MyException(String message, int num) {
 
-       // super(message);
+        super(message);
         number = num;
     }
 }
