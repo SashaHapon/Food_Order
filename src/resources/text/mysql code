@@ -1,0 +1,114 @@
+create schema MAKER;
+USE MAKER;
+create table product(
+    maker varchar(10),
+    model varchar(50),
+    type varchar(50)
+);
+
+create table laptop(
+    code int,
+    model varchar(50),
+    speed smallint,
+    ram smallint,
+    hd real,
+    price double,
+    screan tinyint);
+
+create table pc(
+    code int,
+    model varchar(50),
+    speed smallint,
+    ram smallint,
+    hd real,
+    cd varchar(10),
+    price double
+);
+
+create table printer(
+    code int,
+    model varchar(50),
+    color char(1),
+    type varchar(10),
+    price double
+);
+
+    alter table product
+    add primary key (model);
+    alter table laptop
+    add primary key (code);
+    alter table laptop
+    add foreign key(model) references product(model);
+    alter table pc
+    add primary key (code);
+    alter table pc
+    add foreign key (model) references product(model);
+    alter table printer
+    add primary key (code);
+    alter table printer
+    add foreign key (model) references product(model);
+
+    SET FOREIGN_KEY_CHECKS=0;
+    insert pc(code,model,speed,ram,hd,cd,price)
+    values(0,'hp', 2048, 20, 200, 250, 20.3);
+    SET FOREIGN_KEY_CHECKS=1;
+
+create table pc(
+    code int,
+    model varchar(50),
+    speed smallint,
+    ram smallint,
+    hd real,
+    cd varchar(10),
+    price double
+);
+
+    alter table laptop
+    drop column ram;
+    alter table laptop
+    drop column hd;
+    alter table laptop
+    drop column screan;
+    alter table laptop
+    drop column hd;
+    alter table laptop
+    drop column screan;
+    alter table laptop
+    drop column ram;
+    alter table pc
+    drop column ram;
+    alter table pc
+    drop column hd;
+    alter table pc
+    drop column cd;
+    alter table printer
+    drop column type;
+
+insert pc(code,model,speed,price)
+values(0,'hp', 2048, 20.3);
+insert pc(code,model,speed,price)
+values(2,'Lenovo', 4096, 1000),
+		(3,'Samsung', 9168, 1000),
+		(4,'Dell', 4096, 500),
+		(5,'Asus', 2048, 500),
+		(6,'Aser', 2048, 500),
+		(7,'ChromeBook', 4096, 400),
+		(8,'Ipad', 2048, 300);
+
+SET FOREIGN_KEY_CHECKS=0;
+insert laptop(code,model,speed,price)
+values(2,'Lenovo-laptop', 4096, 1000),
+		(3,'Samsung-lap', 9168, 1000),
+		(4,'Dell-laptop', 4096, 500),
+		(5,'Asus-laptop', 2048, 500),
+		(6,'Aser-laptop', 2048, 500),
+		(7,'ChromeBook-lp', 4096, 400),
+		(8,'Ipad-laptop', 2048, 300);
+SET FOREIGN_KEY_CHECKS=1;
+
+select * from pc where price < 500;
+select * from laptop where speed = 4096;
+
+select * from laptop where speed = 4096 and price < 600;
+
+select * from laptop, pc where laptop.code = pc.type
