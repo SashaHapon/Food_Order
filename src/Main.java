@@ -13,6 +13,11 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.UUID;
 
+import com.order.service.JavaToMySQL;
+
+
+
+
 public class Main {
     public static void main(String[] args) throws IOException, MyException {
 
@@ -28,7 +33,7 @@ public class Main {
 
         WalletService walletService = new WalletServiceImpl(accountService);
 
-        var account = accountService.addAccount("Jack", 100,"+375449394875");
+        var account = accountService.addAccount("Jack", 600,"+375449394875");
 
         var meal = mealService.addMeal("sosiski", 200, 5);
         var meal1 = mealService.addMeal("makaroshki", 200, 10);
@@ -43,8 +48,10 @@ public class Main {
         orderService.addMeal(meal1, orderId);
         orderService.getAllMeals(orderId);
         orderService.applyDiscount(properties.getProperty("discount"), orderId);
-        orderService.checkPayment(orderId);
+      //  orderService.checkPayment(orderId);
 
+    JavaToMySQL javaToMySQL = new JavaToMySQL();
+    javaToMySQL.mybd();
 
 
     }
