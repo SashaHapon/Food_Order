@@ -1,11 +1,7 @@
 package com.order.service;
 import java.sql.*;
+import java.util.List;
 
-/**
- * Simple Java program to connect to MySQL database running on localhost and
- * running SELECT and INSERT query to retrieve and add data.
- * @author Javin Paul
- */
 public class JavaToMySQL {
 
     // JDBC URL, username and password of MySQL server
@@ -18,8 +14,10 @@ public class JavaToMySQL {
     private  Statement stmt;
     private  ResultSet rs;
 
+
     public void mybd() {
         String query = "select * from meal;";
+
 
         try {
             // opening database connection to MySQL server
@@ -31,10 +29,13 @@ public class JavaToMySQL {
             // executing SELECT query
             rs = stmt.executeQuery(query);
 
+
             while (rs.next()) {
                 int count = rs.getInt(1);
-                System.out.println("Total number of books in the table : " + count);
+
+                System.out.println("Total number of meals: " + count);
             }
+
 
         } catch (SQLException sqlEx) {
             sqlEx.printStackTrace();
