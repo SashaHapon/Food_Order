@@ -50,6 +50,12 @@ public class Main {
         orderService.applyDiscount(properties.getProperty("discount"), orderId);
       //  orderService.checkPayment(orderId);
 
+        String s1 = "str";
+        String s2 = "str";
+        String s3 = new String("str");
+        System.out.println(s1 == s2);
+        System.out.println(s1 == s3);
+
     JavaToMySQL javaToMySQL = new JavaToMySQL();
     javaToMySQL.mybd();
 

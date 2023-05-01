@@ -1,6 +1,6 @@
 package com.order.service;
 import java.sql.*;
-import java.util.List;
+
 
 public class JavaToMySQL {
 
@@ -13,6 +13,7 @@ public class JavaToMySQL {
     private  Connection con;
     private  Statement stmt;
     private  ResultSet rs;
+    private  ResultSet ru;
 
 
     public void mybd() {
@@ -29,7 +30,7 @@ public class JavaToMySQL {
             // executing SELECT query
             rs = stmt.executeQuery(query);
 
-
+            con.prepareStatement("select * from accounts where id = 1").setString(1, "");
             while (rs.next()) {
                 int count = rs.getInt(1);
 
