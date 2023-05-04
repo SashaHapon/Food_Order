@@ -14,7 +14,7 @@ public class ConnectionManager {
 
     //todo implement pattern singltone
     private Connection connection;
-    private Properties properties;
+    private Properties properties = new Properties();
     private static ConnectionManager instance;
 
     private ConnectionManager(){};
@@ -40,7 +40,6 @@ public class ConnectionManager {
         String password = properties.getProperty("password");
         try {
             connection = DriverManager.getConnection(url, user, password);
-            // код для выполнения запросов к базе данных
         } catch (SQLException e) {
             System.out.println("Ошибка подключения к базе данных: " + e.getMessage());
         }

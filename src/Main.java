@@ -56,8 +56,10 @@ public class Main {
         System.out.println(s1 == s2);
         System.out.println(s1 == s3);
 
-    JavaToMySQL javaToMySQL = new JavaToMySQL();
-    javaToMySQL.mybd();
+    //JavaToMySQL javaToMySQL = new JavaToMySQL();
+    //javaToMySQL.mybd();
+
+        System.out.println(accountService.getAccount(orderId));
 
 
     }

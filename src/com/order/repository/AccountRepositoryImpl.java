@@ -20,6 +20,14 @@ public class AccountRepositoryImpl implements AccountRepository {
 
     @Override
     public Account addAccount(Account account) {
+        var connection = connectionManager.getConnection();
+        var query = "select * from account where idAccount = 1";
+        try(var statement  = co){
+
+        }catch (){
+
+        }
+
             account.setId(UUID.randomUUID());
             accounts.add(account);
             return account;
@@ -27,25 +35,24 @@ public class AccountRepositoryImpl implements AccountRepository {
 
     @Override
     public Account getAccount(UUID id) {
-        var query = "select * from accounts where id = 1";
+        var query = "select * from account where idAccount = 1";
         var connection = connectionManager.getConnection();
         try(var statement = connection.prepareStatement(query)) {
-            statement.setString(1, id.toString());
+            // statement.setString(1, "1");
             var resultSet = statement.executeQuery();
             //todo move to mapper
             var account = new Account();
-            account.setId(UUID.fromString(resultSet.getString("id")));
-            account.setAccountName(resultSet.getString(2));
-            account.setPhoneNumber(resultSet.getString());
+            account.setId(UUID.fromString(resultSet.getString("idAccount")));
+            account.setAccountName(resultSet.getString("accountName"));
+            account.setPhoneNumber(resultSet.getString("phoneNumber"));
 
             return account;
         } catch (SQLException e) {
             //todo throw DatatbaseException(e)
+            System.out.println("Ошибка подключения к базе данных: " + e.getMessage());
+
         }
-//        var account = accounts.stream().filter(c -> id.equals(c.getId()))
-//                .findFirst()
-//                .orElseThrow(() -> new RuntimeException("Account not found"));
-//        return account;
+        return null;
     }
 
     @Override
