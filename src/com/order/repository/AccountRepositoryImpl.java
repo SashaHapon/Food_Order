@@ -28,7 +28,7 @@ public class AccountRepositoryImpl implements AccountRepository {
             statement.executeUpdate();
 
         }catch (SQLException e){
-            System.out.println("Can't add account" + e.getMessage());
+            System.out.println("Can't add account: " + e.getMessage());
         }
 
 
@@ -75,7 +75,7 @@ public class AccountRepositoryImpl implements AccountRepository {
             statement.executeUpdate();
 
         }catch (SQLException e){
-            System.out.println("Can't delete account" + e.getMessage());
+            System.out.println("Can't delete account: " + e.getMessage());
         }
 
 
