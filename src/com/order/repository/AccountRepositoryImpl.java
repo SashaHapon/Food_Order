@@ -21,12 +21,17 @@ public class AccountRepositoryImpl implements AccountRepository {
     @Override
     public Account addAccount(Account account) {
         var connection = connectionManager.getConnection();
-        var query = "select * from account where idAccount = 1";
-        try(var statement  = co){
+        var query = "INSERT account( accountName, phoneNumber) VALUES (?, ?)";
+        try(var statement  = connection.prepareStatement(query)){
+            statement.setString(1, account.getAccountName());
+            statement.setString(2, account.getPhoneNumber());
+            statement.executeUpdate();
 
-        }catch (){
-
+        }catch (SQLException e){
+            System.out.println("Can't add account" + e.getMessage());
         }
+
+
 
             account.setId(UUID.randomUUID());
             accounts.add(account);
