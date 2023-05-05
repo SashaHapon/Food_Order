@@ -62,11 +62,23 @@ public class AccountRepositoryImpl implements AccountRepository {
 
     @Override
     public void deleteAccountById(UUID id) {
-        var  account = accounts.stream()
+    /*    var  account = accounts.stream()
                 .filter(c -> id.equals(c.getId()))
                 .findFirst().
                 orElseThrow(() -> new RuntimeException("Account not found"));
         accounts.remove(account);
+    */
+        var connection = connectionManager.getConnection();
+        var query = "DELETE FROM account WHERE idAccount = ?";
+        try(var statement  = connection.prepareStatement(query)){
+            statement.setString(1, "15");
+            statement.executeUpdate();
+
+        }catch (SQLException e){
+            System.out.println("Can't delete account" + e.getMessage());
+        }
+
+
     }
 
     @Override
