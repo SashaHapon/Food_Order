@@ -6,7 +6,7 @@ public class Account {
    private String accountName;
     private double moneyOnCard;
     private String phoneNumber;
-    private UUID id;
+    private Long id;
 
     public Account(){};
     public Account(String accountName, double moneyOnCard, String phoneNumber){
@@ -14,7 +14,7 @@ public class Account {
         this.moneyOnCard = moneyOnCard;
         this.phoneNumber = phoneNumber;
     }
-    public Account(String accountName, String phoneNumber, UUID id){
+    public Account(String accountName, String phoneNumber, Long id){
         this.accountName = accountName;
         this.phoneNumber = phoneNumber;
         this.id = id;
@@ -44,11 +44,11 @@ public class Account {
         this.phoneNumber = phoneNumber;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
