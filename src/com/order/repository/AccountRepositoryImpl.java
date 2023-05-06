@@ -2,7 +2,9 @@ package com.order.repository;
 
 import com.order.api.repository.AccountRepository;
 import com.order.model.Account;
+import com.order.service.MyException;
 import com.order.utils.ConnectionManager;
+import com.order.utils.Mapper;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -17,7 +19,8 @@ public class AccountRepositoryImpl implements AccountRepository {
     private ArrayList<Account> accounts = new ArrayList<>();
 
     private final ConnectionManager connectionManager = ConnectionManager.getInstance();
-
+//slf4g , log4g
+    //lombok
     @Override
     public Account addAccount(Account account) {
         var connection = connectionManager.getConnection();
@@ -27,15 +30,18 @@ public class AccountRepositoryImpl implements AccountRepository {
             statement.setString(2, account.getPhoneNumber());
             statement.executeUpdate();
 
+            return account;
+
         }catch (SQLException e){
-            System.out.println("Can't add account: " + e.getMessage());
+            throw new RuntimeException(e);
+         //   System.out.println("Can't add account: " + e.getMessage());
         }
 
 
 
-            account.setId(UUID.randomUUID());
-            accounts.add(account);
-            return account;
+         //   account.setId(UUID.randomUUID());
+         //   accounts.add(account);
+         //   return account;
     }
 
     @Override
@@ -45,19 +51,14 @@ public class AccountRepositoryImpl implements AccountRepository {
         try(var statement = connection.prepareStatement(query)) {
             // statement.setString(1, "1");
             var resultSet = statement.executeQuery();
-            //todo move to mapper
-            var account = new Account();
-            account.setId(UUID.fromString(resultSet.getString("idAccount")));
-            account.setAccountName(resultSet.getString("accountName"));
-            account.setPhoneNumber(resultSet.getString("phoneNumber"));
-
-            return account;
+            Mapper mapper = new Mapper(resultSet);
+            return mapper.getAccount();
         } catch (SQLException e) {
             //todo throw DatatbaseException(e)
-            System.out.println("Ошибка подключения к базе данных: " + e.getMessage());
-
+            throw new RuntimeException(e);
+           // System.out.println("Ошибка подключения к базе данных: " + e.getMessage());
         }
-        return null;
+
     }
 
     @Override
