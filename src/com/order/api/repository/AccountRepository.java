@@ -10,6 +10,6 @@ public interface AccountRepository {
     Account getAccount(UUID id);
     void deleteAccountById(UUID id);
     List<Account> getAllAccounts();
-    void update(String name, String phone, UUID idChengingAccount);
+    void update(String name, String phone, String idChengingAccount);
 
 }

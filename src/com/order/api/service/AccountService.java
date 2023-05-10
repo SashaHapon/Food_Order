@@ -13,5 +13,5 @@ public interface AccountService {
 
     void deleteAccountById(UUID id);
 
-    void update(String name, String phone, UUID idChengingAccount);
+    void update(String name, String phone, String idChengingAccount);
  }

@@ -33,7 +33,7 @@ public class Main {
 
         WalletService walletService = new WalletServiceImpl(accountService);
 
-        var account = accountService.addAccount("Jack", 600,"+375449394875");
+        //var account = accountService.addAccount("Jack", 600,"+375449394875");
 
         var meal = mealService.addMeal("sosiski", 200, 5);
         var meal1 = mealService.addMeal("makaroshki", 200, 10);
@@ -42,12 +42,12 @@ public class Main {
         OrderRepository orderRepository = new OrderRepositoryImpl();
         OrderService orderService = new OrderServiceImpl(orderRepository);
 
-        var order = orderService.createOrder(account, mealRepository.getAllMeal());
-        UUID orderId = order.getId();
-        orderService.addMeal(meal, orderId);
-        orderService.addMeal(meal1, orderId);
-        orderService.getAllMeals(orderId);
-        orderService.applyDiscount(properties.getProperty("discount"), orderId);
+        //var order = orderService.createOrder(account, mealRepository.getAllMeal());
+       // UUID orderId = order.getId();
+        //orderService.addMeal(meal, orderId);
+      //  orderService.addMeal(meal1, orderId);
+       // orderService.getAllMeals(orderId);
+       // orderService.applyDiscount(properties.getProperty("discount"), orderId);
       //  orderService.checkPayment(orderId);
 
         String s1 = "str";
@@ -59,10 +59,11 @@ public class Main {
     //JavaToMySQL javaToMySQL = new JavaToMySQL();
     //javaToMySQL.mybd();
 
-        System.out.println(accountService.getAccount(orderId));
-        //accountService.addAccount("Lui", 95, "+3544000000");
+      //  System.out.println(accountService.getAccount(orderId));
+        accountService.addAccount("Luidge", 95, "+353334400460");
         //accountService.deleteAccountById(orderId); //change ID
-        //accountService.getAll();
+        //System.out.println(accountService.getAll().get(7));
+        accountService.update("G-----ooool", "+102", "2b300f77-3846-47f8-8a8e-e20a0275f2d1");
 
     }
 }

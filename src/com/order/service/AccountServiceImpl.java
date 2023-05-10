@@ -29,7 +29,7 @@ public class AccountServiceImpl implements AccountService {
         accountRepository.deleteAccountById(id);
     }
     @Override
-    public void update(String name, String phone, UUID idChengingAccount){
+    public void update(String name, String phone, String idChengingAccount){
        accountRepository.update(name, phone, idChengingAccount);
 
     }

@@ -9,41 +9,36 @@ import java.util.List;
 import java.util.UUID;
 
 public class AccountRepositoryImpl implements AccountRepository {
-
-    //todo delete
-    @Deprecated
-    private ArrayList<Account> accounts = new ArrayList<>();
-
     private final ConnectionManager connectionManager = ConnectionManager.getInstance();
 //slf4g , log4g
     //lombok
     @Override
     public Account addAccount(Account account) {
         var connection = connectionManager.getConnection();
-        var query = "INSERT account( accountName, phoneNumber) VALUES (?, ?)";
+        var query = "INSERT account(idAccount, accountName, phoneNumber) VALUES (?, ?, ?)";
         try(var statement  = connection.prepareStatement(query)){
-            statement.setString(1, account.getAccountName());
-            statement.setString(2, account.getPhoneNumber());
+            statement.setString(1, String.valueOf(UUID.randomUUID()));
+            statement.setString(2, account.getAccountName());
+            statement.setString(3, account.getPhoneNumber());
             statement.executeUpdate();
-
             return account;
-
         }catch (SQLException e){
-            throw new RuntimeException(e);
 
+            throw new RuntimeException(e);
         }
     }
 
     @Override
     public Account getAccount(UUID id) {
-        var query = "select * from account where idAccount = 1";
+        var query = "select * from account where idAccount = ?";
         var connection = connectionManager.getConnection();
         try(var statement = connection.prepareStatement(query)) {
-            // statement.setString(1, "1");
+            statement.setString(1, String.valueOf(id));
             var resultSet = statement.executeQuery();
             Mapper mapper = new Mapper(resultSet);
             return mapper.getAccount();
         } catch (SQLException e) {
+
             throw new RuntimeException(e);
         }
 
@@ -57,6 +52,7 @@ public class AccountRepositoryImpl implements AccountRepository {
             statement.setString(1, "15");
             statement.executeUpdate();
         }catch (SQLException e){
+
             System.out.println("Can't delete account: " + e.getMessage());
         }
     }
@@ -69,20 +65,24 @@ public class AccountRepositoryImpl implements AccountRepository {
             var resultSet = statement.executeQuery();
             Mapper mapper = new Mapper(resultSet);
             return mapper.getAccounts();
-
-
         }catch (SQLException e){
+
             System.out.println("Can't delete account: " + e.getMessage());
             throw new RuntimeException(e);
         }
     }
 
     @Override
-    public void update(String name, String phone, UUID idChengingAccount) {
-        var account = accounts.stream().filter(c -> idChengingAccount.equals(c.getId()))
-                .findFirst()
-                .orElseThrow(() -> new RuntimeException("Account not found"));
-        account.setAccountName(name);
-        account.setPhoneNumber(phone);
+    public void update(String name, String phone, String id) {
+        var connection = connectionManager.getConnection();
+        try (var statement = connection.prepareStatement("UPDATE account SET accountName = ?, phoneNumber = ? WHERE idAccount = ?")) {
+            statement.setString(1, name);
+            statement.setString(2, phone);
+            statement.setString(3, id);
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
