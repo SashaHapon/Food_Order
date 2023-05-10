@@ -1,12 +1,8 @@
 package com.order.repository;
-
 import com.order.api.repository.AccountRepository;
 import com.order.model.Account;
-import com.order.service.MyException;
 import com.order.utils.ConnectionManager;
 import com.order.utils.Mapper;
-
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,14 +30,8 @@ public class AccountRepositoryImpl implements AccountRepository {
 
         }catch (SQLException e){
             throw new RuntimeException(e);
-         //   System.out.println("Can't add account: " + e.getMessage());
+
         }
-
-
-
-         //   account.setId(UUID.randomUUID());
-         //   accounts.add(account);
-         //   return account;
     }
 
     @Override
@@ -54,37 +44,37 @@ public class AccountRepositoryImpl implements AccountRepository {
             Mapper mapper = new Mapper(resultSet);
             return mapper.getAccount();
         } catch (SQLException e) {
-            //todo throw DatatbaseException(e)
             throw new RuntimeException(e);
-           // System.out.println("Ошибка подключения к базе данных: " + e.getMessage());
         }
 
     }
 
     @Override
     public void deleteAccountById(UUID id) {
-    /*    var  account = accounts.stream()
-                .filter(c -> id.equals(c.getId()))
-                .findFirst().
-                orElseThrow(() -> new RuntimeException("Account not found"));
-        accounts.remove(account);
-    */
         var connection = connectionManager.getConnection();
         var query = "DELETE FROM account WHERE idAccount = ?";
         try(var statement  = connection.prepareStatement(query)){
             statement.setString(1, "15");
             statement.executeUpdate();
-
         }catch (SQLException e){
             System.out.println("Can't delete account: " + e.getMessage());
         }
-
-
     }
 
     @Override
     public List<Account> getAllAccounts() {
-        return new ArrayList<>(accounts);
+        var connection = connectionManager.getConnection();
+        var query = "SELECT * FROM account";
+        try(var statement  = connection.prepareStatement(query)){
+            var resultSet = statement.executeQuery();
+            Mapper mapper = new Mapper(resultSet);
+            return mapper.getAccounts();
+
+
+        }catch (SQLException e){
+            System.out.println("Can't delete account: " + e.getMessage());
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

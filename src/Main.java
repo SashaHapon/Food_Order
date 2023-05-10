@@ -60,8 +60,9 @@ public class Main {
     //javaToMySQL.mybd();
 
         System.out.println(accountService.getAccount(orderId));
-        accountService.addAccount("Lui", 95, "+3544000000");
-        accountService.deleteAccountById(orderId); //change ID
+        //accountService.addAccount("Lui", 95, "+3544000000");
+        //accountService.deleteAccountById(orderId); //change ID
+        //accountService.getAll();
 
     }
 }
