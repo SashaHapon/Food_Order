@@ -1,6 +1,7 @@
 package com.order.utils;
 
 import com.order.model.Account;
+import com.order.model.Meal;
 
 import java.beans.Statement;
 import java.sql.ResultSet;
@@ -38,4 +39,31 @@ public class Mapper {
         return array;
     }
 
+    public Meal getMeal() throws SQLException {
+        Meal meal = new Meal();
+        resultSet.next();
+        meal.setId(resultSet.getLong("idMeal"));
+        meal.setNameOfMeal(resultSet.getString("nameOfMeal"));
+        meal.setPriceOfMeal(resultSet.getDouble("priceOfMeal"));
+        meal.setCookingTime(resultSet.getInt("cookingTime"));
+        meal.setCreateDate(resultSet.getString("createDate"));
+
+        return meal;
+    }
+
+    public List<Meal> getMeals() throws SQLException {
+        int j = 1;
+        List <Meal> array = new ArrayList<>();
+        while (resultSet.next()){
+            Meal meal = new Meal();
+            meal.setId(Long.getLong(resultSet.getString("idMeal")));    //?????
+            meal.setNameOfMeal(resultSet.getString("nameOfMeal"));
+            meal.setPriceOfMeal(resultSet.getDouble("priceOfMeal"));
+            meal.setCookingTime(resultSet.getInt("cookingTime"));
+            meal.setCreateDate(resultSet.getString("createDate"));
+            array.add(meal);
+            j++;
+        }
+        return array;
+    }
 }

@@ -14,5 +14,5 @@ public interface MealService {
 
     void deleteMealById(UUID id);
 
-    void update(String nameOfMeal, double priceOfMeal, int cookingTime, UUID idChengingMeal);
+    void update(String nameOfMeal, double priceOfMeal, int cookingTime, String idChengingMeal);
 }

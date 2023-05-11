@@ -4,7 +4,6 @@ import com.order.model.Account;
 import com.order.utils.ConnectionManager;
 import com.order.utils.Mapper;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -49,7 +48,7 @@ public class AccountRepositoryImpl implements AccountRepository {
         var connection = connectionManager.getConnection();
         var query = "DELETE FROM account WHERE idAccount = ?";
         try(var statement  = connection.prepareStatement(query)){
-            statement.setString(1, "15");
+            statement.setString(1, String.valueOf(id));
             statement.executeUpdate();
         }catch (SQLException e){
 

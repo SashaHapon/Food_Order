@@ -10,5 +10,5 @@ public interface MealRepository {
     Meal getMeal(UUID id);
     void deleteMealById(UUID id);
     List<Meal> getAllMeal();
-    void update(String nameOfMeal, double priceOfMeal, int cookingTime, UUID idChengingMeal);
+    void update(String nameOfMeal, double priceOfMeal, int cookingTime, String idChengingMeal);
 }

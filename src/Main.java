@@ -35,9 +35,9 @@ public class Main {
 
         //var account = accountService.addAccount("Jack", 600,"+375449394875");
 
-        var meal = mealService.addMeal("sosiski", 200, 5);
-        var meal1 = mealService.addMeal("makaroshki", 200, 10);
-        var meal2 = mealService.addMeal("Potatos", 65, 20);
+       // var meal = mealService.addMeal("sosiski", 200, 5);
+       // var meal1 = mealService.addMeal("makaroshki", 200, 10);
+      //  var meal2 = mealService.addMeal("Potatos", 65, 20);
 
         OrderRepository orderRepository = new OrderRepositoryImpl();
         OrderService orderService = new OrderServiceImpl(orderRepository);
@@ -64,6 +64,7 @@ public class Main {
         //accountService.deleteAccountById(orderId); //change ID
         //System.out.println(accountService.getAll().get(7));
         accountService.update("G-----ooool", "+102", "2b300f77-3846-47f8-8a8e-e20a0275f2d1");
-
+        mealService.addMeal("msd",45.3,5);
+        System.out.println(mealService.getAll());
     }
 }

@@ -7,14 +7,16 @@ public class Meal {
     private double priceOfMeal;
     private int cookingTime;
     private String createDate;
-    private UUID id;
+    private Long id;
+
+    public Meal(){};
 
     public Meal(String nameOfMeal, double priceOfMeal, int cookingTime){
         this.nameOfMeal = nameOfMeal;
         this.priceOfMeal = priceOfMeal;
         this.cookingTime = cookingTime;
     }
-    public Meal(String nameOfMeal, double priceOfMeal, int cookingTime, UUID id){
+    public Meal(String nameOfMeal, double priceOfMeal, int cookingTime, Long id){
         this.nameOfMeal = nameOfMeal;
         this.priceOfMeal = priceOfMeal;
         this.cookingTime = cookingTime;
@@ -47,11 +49,19 @@ public class Meal {
         return cookingTime;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public UUID getId() {
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
+
+    public Long getId() {
         return id;
     }
     public String toString() {
