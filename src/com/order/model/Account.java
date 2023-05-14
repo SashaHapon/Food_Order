@@ -8,16 +8,33 @@ public class Account {
     private String phoneNumber;
     private Long id;
 
+    private String idw;
+
     public Account(){};
     public Account(String accountName, double moneyOnCard, String phoneNumber){
         this.accountName = accountName;
         this.moneyOnCard = moneyOnCard;
         this.phoneNumber = phoneNumber;
+        this.idw = idRandomizer();
     }
     public Account(String accountName, String phoneNumber, Long id){
         this.accountName = accountName;
         this.phoneNumber = phoneNumber;
         this.id = id;
+    }
+
+    private String idRandomizer(){
+       String id  = String.valueOf(UUID.randomUUID());
+        System.out.println(id);
+       return id;
+    }
+
+    public String getIdw() {
+        return idw;
+    }
+
+    public void setIdw(String idw) {
+        this.idw = idw;
     }
 
     public String getAccountName() {

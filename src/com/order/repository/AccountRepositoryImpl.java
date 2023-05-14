@@ -16,7 +16,7 @@ public class AccountRepositoryImpl implements AccountRepository {
         var connection = connectionManager.getConnection();
         var query = "INSERT account(idAccount, accountName, phoneNumber) VALUES (?, ?, ?)";
         try(var statement  = connection.prepareStatement(query)){
-            statement.setString(1, String.valueOf(UUID.randomUUID()));
+            statement.setString(1, String.valueOf(account.getIdw()));
             statement.setString(2, account.getAccountName());
             statement.setString(3, account.getPhoneNumber());
             statement.executeUpdate();
@@ -40,7 +40,6 @@ public class AccountRepositoryImpl implements AccountRepository {
 
             throw new RuntimeException(e);
         }
-
     }
 
     @Override

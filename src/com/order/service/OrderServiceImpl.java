@@ -7,6 +7,7 @@ import com.order.model.Account;
 import com.order.model.Meal;
 import com.order.model.Order;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,14 +21,24 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order createOrder(Account account, List<Meal> meals) {
-        var order = new Order();
-        order.setAccount(account);
-        order.setMeals(meals);
-        orderSum(order);
-        cookingTimeSum(order);
-        orderRepository.createOrder(order);
-        return order;
+    public Order createOrder(Account account, List<Meal> meals)  {
+
+        try {
+            var order = new Order();
+            order.setAccount(account);
+            order.setMeals(meals);
+            orderSum(order);
+            cookingTimeSum(order);
+            orderRepository.createOrder(order);
+            return order;
+        } catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public Order getOrder(UUID id) {
+        return orderRepository.getOrder(id);
     }
 
     @Override

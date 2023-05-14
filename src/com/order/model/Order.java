@@ -8,7 +8,28 @@ public class Order {
 
     private List<Meal> meals = new ArrayList<>();
     private Account account;
-    private UUID id;
+    private Long id;
+
+    private String accountId;
+
+    public String getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
+    }
+
+    private String idw;
+
+    public String getIdw() {
+        return idw;
+    }
+
+    public void setIdw(String idw) {
+        this.idw = idw;
+    }
+
     private double orderSum;
     private int cookingTimeSum;
 
@@ -28,11 +49,11 @@ public class Order {
         this.account = account;
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

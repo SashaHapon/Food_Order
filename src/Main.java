@@ -10,6 +10,7 @@ import com.order.service.MyException;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Properties;
 import java.util.UUID;
 
@@ -19,7 +20,7 @@ import com.order.service.JavaToMySQL;
 
 
 public class Main {
-    public static void main(String[] args) throws IOException, MyException {
+    public static void main(String[] args) throws IOException, MyException, SQLException {
 
         MealRepository mealRepository = new MealRepositoryImpl();
         MealService mealService = new MealServiceImpl(mealRepository);
@@ -42,7 +43,7 @@ public class Main {
         OrderRepository orderRepository = new OrderRepositoryImpl();
         OrderService orderService = new OrderServiceImpl(orderRepository);
 
-        //var order = orderService.createOrder(account, mealRepository.getAllMeal());
+      //  var order = orderService.createOrder(account, mealRepository.getAllMeal());
        // UUID orderId = order.getId();
         //orderService.addMeal(meal, orderId);
       //  orderService.addMeal(meal1, orderId);
@@ -60,11 +61,15 @@ public class Main {
     //javaToMySQL.mybd();
 
       //  System.out.println(accountService.getAccount(orderId));
-        accountService.addAccount("Luidge", 95, "+353334400460");
+       var acc =  accountService.addAccount("Sasha", 50000, "+35600000000");
         //accountService.deleteAccountById(orderId); //change ID
         //System.out.println(accountService.getAll().get(7));
-        accountService.update("G-----ooool", "+102", "2b300f77-3846-47f8-8a8e-e20a0275f2d1");
+      //  accountService.update("G-----ooool", "+102", "2b300f77-3846-47f8-8a8e-e20a0275f2d1");
         mealService.addMeal("msd",45.3,5);
         System.out.println(mealService.getAll());
+
+
+        orderService.createOrder(acc, mealService.getAll());
+        System.out.println(orderService.getOrder(UUID.fromString("bdba49b5-2685-434f-a365-425b1f8e7278")));
     }
 }
