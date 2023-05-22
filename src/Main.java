@@ -68,7 +68,7 @@ public class Main {
         mealService.addMeal("msd",45.3,5);
         System.out.println(mealService.getAll());
 
-
+//check
         orderService.createOrder(acc, mealService.getAll());
         System.out.println(orderService.getOrder(UUID.fromString("bdba49b5-2685-434f-a365-425b1f8e7278")));
     }
