@@ -29,7 +29,7 @@ public class ConnectionManager {
 
     public Connection getConnection(){
         try {
-            FileInputStream in = new FileInputStream("src/resources/properties/config.property");
+            FileInputStream in = new FileInputStream("src/main/java/resources/properties/config.property");
             properties.load(in);
         } catch (IOException e){
 

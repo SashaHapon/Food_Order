@@ -29,7 +29,7 @@ public class Main {
         AccountService accountService = new AccountServiceImpl(accountRepository);
 
         Properties properties = new Properties();
-        FileInputStream in = new FileInputStream("src/resources/properties/config.property");
+        FileInputStream in = new FileInputStream("src/main/java/resources/properties/config.property");
         properties.load(in);
 
         WalletService walletService = new WalletServiceImpl(accountService);
