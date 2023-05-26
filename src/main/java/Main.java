@@ -1,12 +1,16 @@
 import com.order.api.repository.AccountRepository;
 import com.order.api.repository.MealRepository;
 import com.order.api.repository.OrderRepository;
-import com.order.api.service.*;
+import com.order.api.service.AccountService;
+import com.order.api.service.MealService;
+import com.order.api.service.OrderService;
+import com.order.api.service.WalletService;
 import com.order.repository.AccountRepositoryImpl;
 import com.order.repository.MealRepositoryImpl;
 import com.order.repository.OrderRepositoryImpl;
 import com.order.service.*;
-import com.order.service.MyException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -14,13 +18,11 @@ import java.sql.SQLException;
 import java.util.Properties;
 import java.util.UUID;
 
-import com.order.service.JavaToMySQL;
-
-
-
 
 public class Main {
     public static void main(String[] args) throws IOException, MyException, SQLException {
+
+        Logger logger = LogManager.getLogger(Main.class);
 
         MealRepository mealRepository = new MealRepositoryImpl();
         MealService mealService = new MealServiceImpl(mealRepository);
