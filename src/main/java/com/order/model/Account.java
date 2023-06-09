@@ -1,11 +1,20 @@
 package com.order.model;
 
+import jakarta.persistence.*;
+
 import java.util.UUID;
 
+@Entity
+@Table(name = "account")
 public class Account {
+    @Column (name = "accountName")
    private String accountName;
+    @Column (name = "moneyOnCard")
     private double moneyOnCard;
+    @Column (name = "phoneNumber")
     private String phoneNumber;
+    @Id
+    @Column (name = "idAccount")
     private Long id;
 
     private String idw;

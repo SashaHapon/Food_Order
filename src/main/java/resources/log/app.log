@@ -529,3 +529,25 @@
 2023-06-09 16:01:23,339 DEBUG o.h.s.i.StatisticsInitiator [main] Statistics initialized [enabled=false]
 2023-06-09 16:01:23,348 DEBUG o.h.e.t.i.TransactionImpl [main] On TransactionImpl creation, JpaCompliance#isJpaTransactionComplianceEnabled == false
 2023-06-09 16:01:23,349 DEBUG o.h.e.t.i.TransactionImpl [main] begin
+2023-06-09 16:44:06,153 INFO c.s.t.j.Main [main] rr
+2023-06-09 16:44:06,277 DEBUG o.j.logging [main] Logging Provider: org.jboss.logging.Log4j2LoggerProvider
+2023-06-09 16:44:06,300 DEBUG o.h.i.i.IntegratorServiceImpl [main] Adding Integrator [org.hibernate.cfg.beanvalidation.BeanValidationIntegrator].
+2023-06-09 16:44:06,306 DEBUG o.h.i.i.IntegratorServiceImpl [main] Adding Integrator [org.hibernate.secure.spi.JaccIntegrator].
+2023-06-09 16:44:06,321 DEBUG o.h.i.i.IntegratorServiceImpl [main] Adding Integrator [org.hibernate.cache.internal.CollectionCacheInvalidator].
+2023-06-09 16:44:06,462 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-06-09 16:44:06,465 DEBUG o.h.c.Environment [main] HHH000206: hibernate.properties not found
+2023-06-09 16:44:07,011 DEBUG o.h.b.j.i.s.LocalXmlResourceResolver [main] Interpreting public/system identifier : [-//Hibernate/Hibernate Configuration DTD 3.0//EN] - [http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd]
+2023-06-09 16:44:07,020 WARN o.h.o.deprecation [main] HHH90000012: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/hibernate-configuration. Use namespace http://www.hibernate.org/dtd/hibernate-configuration instead.  Support for obsolete DTD/XSD namespaces may be removed at any time.
+2023-06-09 16:44:07,021 DEBUG o.h.b.j.i.s.LocalXmlResourceResolver [main] Recognized hibernate-configuration identifier; attempting to resolve on classpath under org/hibernate/
+2023-06-09 16:44:07,040 DEBUG o.h.b.c.i.JaxbCfgProcessor [main] cfg.xml document did not define namespaces; wrapping in custom event reader to introduce namespace information
+2023-06-09 16:46:02,623 INFO c.s.t.j.Main [main] rr
+2023-06-09 16:46:02,688 DEBUG o.j.logging [main] Logging Provider: org.jboss.logging.Log4j2LoggerProvider
+2023-06-09 16:46:02,713 DEBUG o.h.i.i.IntegratorServiceImpl [main] Adding Integrator [org.hibernate.cfg.beanvalidation.BeanValidationIntegrator].
+2023-06-09 16:46:02,718 DEBUG o.h.i.i.IntegratorServiceImpl [main] Adding Integrator [org.hibernate.secure.spi.JaccIntegrator].
+2023-06-09 16:46:02,729 DEBUG o.h.i.i.IntegratorServiceImpl [main] Adding Integrator [org.hibernate.cache.internal.CollectionCacheInvalidator].
+2023-06-09 16:46:02,879 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-06-09 16:46:02,883 DEBUG o.h.c.Environment [main] HHH000206: hibernate.properties not found
+2023-06-09 16:46:03,478 DEBUG o.h.b.j.i.s.LocalXmlResourceResolver [main] Interpreting public/system identifier : [-//Hibernate/Hibernate Configuration DTD 3.0//EN] - [http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd]
+2023-06-09 16:46:03,493 WARN o.h.o.deprecation [main] HHH90000012: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/hibernate-configuration. Use namespace http://www.hibernate.org/dtd/hibernate-configuration instead.  Support for obsolete DTD/XSD namespaces may be removed at any time.
+2023-06-09 16:46:03,493 DEBUG o.h.b.j.i.s.LocalXmlResourceResolver [main] Recognized hibernate-configuration identifier; attempting to resolve on classpath under org/hibernate/
+2023-06-09 16:46:03,516 DEBUG o.h.b.c.i.JaxbCfgProcessor [main] cfg.xml document did not define namespaces; wrapping in custom event reader to introduce namespace information
