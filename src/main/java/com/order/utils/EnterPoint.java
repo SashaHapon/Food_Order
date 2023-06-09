@@ -1,6 +1,6 @@
 package com.order.utils;
+
 import com.order.model.Account;
-import com.order.utils.HibernateUtil;
 import org.hibernate.Session;
 
 public class EnterPoint {
@@ -11,7 +11,7 @@ public class EnterPoint {
 
         session.beginTransaction();
         Account account = new Account();
-
+        account.setId(39932l);
         account.setAccountName("ad");
         account.setPhoneNumber("+10101010101010");
 

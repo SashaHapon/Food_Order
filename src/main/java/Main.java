@@ -9,6 +9,7 @@ import com.order.repository.AccountRepositoryImpl;
 import com.order.repository.MealRepositoryImpl;
 import com.order.repository.OrderRepositoryImpl;
 import com.order.service.*;
+import com.order.utils.EnterPoint;
 import com.order.utils.Log;
 
 import java.io.IOException;
@@ -20,6 +21,9 @@ public class Main {
 
         Log log = new Log();
         log.info("rr");
+
+        EnterPoint enter = new EnterPoint();
+        enter.enter();
 
         MealRepository mealRepository = new MealRepositoryImpl();
         MealService mealService = new MealServiceImpl(mealRepository);
@@ -61,7 +65,7 @@ public class Main {
         //accountService.deleteAccountById(orderId); //change ID
         //System.out.println(accountService.getAll().get(7));
       //  accountService.update("G-----ooool", "+102", "2b300f77-3846-47f8-8a8e-e20a0275f2d1");
-     //   mealService.addMeal("msd",45.3,5);
+    //   mealService.addMeal("msd",45.3,700000);
      //   System.out.println(mealService.getAll());
 
 //check

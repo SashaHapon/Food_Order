@@ -1,8 +1,10 @@
 package com.order.utils;
+
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
-import org.hibernate.service.ServiceRegistryBuilder;
+
 
 public class HibernateUtil {
 
@@ -11,10 +13,10 @@ public class HibernateUtil {
 
     private static SessionFactory buildSessionFactory() {
         try {
-            // Создает сессию с hibernate.cfg.xml
+
             Configuration configuration = new Configuration();
             configuration.configure();
-            serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
+            serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
 
             return configuration.buildSessionFactory(serviceRegistry);
         }

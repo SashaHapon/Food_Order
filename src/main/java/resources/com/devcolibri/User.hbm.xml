@@ -3,10 +3,9 @@
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="com.order.model.Account" table="user" catalog="mydb">
+    <class name="com.order.model.Account" table="account" catalog="mydb">
         <id name="id" type="java.lang.Long">
             <column name="idAccount" />
-            <generator class="identity" />
         </id>
         <property name="accountName" type="string">
             <column name="accountName" length="20" not-null="false" unique="false" />
