@@ -5,8 +5,8 @@ import org.hibernate.Session;
 
 public class EnterPoint {
 
-    public static void main(String[] args) {
-        System.out.println("Maven + Hibernate + MySQL");
+    public void enter() {
+
         Session session = HibernateUtil.getSessionFactory().openSession();
 
         session.beginTransaction();
