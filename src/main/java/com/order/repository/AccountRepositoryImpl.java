@@ -34,8 +34,8 @@ public class AccountRepositoryImpl implements AccountRepository {
         try(var statement = connection.prepareStatement(query)) {
             statement.setString(1, String.valueOf(id));
             var resultSet = statement.executeQuery();
-            Mapper mapper = new Mapper(resultSet);
-            return mapper.getAccount();
+            Mapper mapper = new Mapper();
+            return mapper.getAccount(resultSet);
         } catch (SQLException e) {
 
             throw new RuntimeException(e);
@@ -61,8 +61,8 @@ public class AccountRepositoryImpl implements AccountRepository {
         var query = "SELECT * FROM account";
         try(var statement  = connection.prepareStatement(query)){
             var resultSet = statement.executeQuery();
-            Mapper mapper = new Mapper(resultSet);
-            return mapper.getAccounts();
+            Mapper mapper = new Mapper();
+            return mapper.getAccounts(resultSet);
         }catch (SQLException e){
 
             System.out.println("Can't delete account: " + e.getMessage());

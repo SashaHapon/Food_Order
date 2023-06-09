@@ -1,7 +1,6 @@
 package com.order.service;
 
 import com.order.api.repository.OrderRepository;
-import com.order.api.service.ILogger;
 import com.order.api.service.OrderService;
 import com.order.model.Account;
 import com.order.model.Meal;
@@ -13,7 +12,6 @@ import java.util.UUID;
 
 public class OrderServiceImpl implements OrderService {
 
-    private static final ILogger LOGGER = new Logger();
     private OrderRepository orderRepository;
 
     public OrderServiceImpl(OrderRepository orderRepository) {

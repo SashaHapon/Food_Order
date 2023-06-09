@@ -9,20 +9,17 @@ import com.order.repository.AccountRepositoryImpl;
 import com.order.repository.MealRepositoryImpl;
 import com.order.repository.OrderRepositoryImpl;
 import com.order.service.*;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.order.utils.Log;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Properties;
-import java.util.UUID;
 
 
 public class Main {
     public static void main(String[] args) throws IOException, MyException, SQLException {
 
-        Logger logger = LogManager.getLogger(Main.class);
+        Log log = new Log();
+        log.info("rr");
 
         MealRepository mealRepository = new MealRepositoryImpl();
         MealService mealService = new MealServiceImpl(mealRepository);
@@ -30,9 +27,6 @@ public class Main {
         AccountRepository accountRepository = new AccountRepositoryImpl();
         AccountService accountService = new AccountServiceImpl(accountRepository);
 
-        Properties properties = new Properties();
-        FileInputStream in = new FileInputStream("src/main/java/resources/properties/config.property");
-        properties.load(in);
 
         WalletService walletService = new WalletServiceImpl(accountService);
 
@@ -63,15 +57,15 @@ public class Main {
     //javaToMySQL.mybd();
 
       //  System.out.println(accountService.getAccount(orderId));
-       var acc =  accountService.addAccount("Sasha", 50000, "+35600000000");
+    //   var acc =  accountService.addAccount("Sasha", 50000, "+35600000000");
         //accountService.deleteAccountById(orderId); //change ID
         //System.out.println(accountService.getAll().get(7));
       //  accountService.update("G-----ooool", "+102", "2b300f77-3846-47f8-8a8e-e20a0275f2d1");
-        mealService.addMeal("msd",45.3,5);
-        System.out.println(mealService.getAll());
+     //   mealService.addMeal("msd",45.3,5);
+     //   System.out.println(mealService.getAll());
 
 //check
-        orderService.createOrder(acc, mealService.getAll());
-        System.out.println(orderService.getOrder(UUID.fromString("bdba49b5-2685-434f-a365-425b1f8e7278")));
+     //   orderService.createOrder(acc, mealService.getAll());
+    //    System.out.println(orderService.getOrder(UUID.fromString("bdba49b5-2685-434f-a365-425b1f8e7278")));
     }
 }

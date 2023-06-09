@@ -1,31 +1,18 @@
 package com.order.utils;
 
-import com.order.api.service.AccountService;
-import com.order.api.service.OrderService;
 import com.order.model.Account;
 import com.order.model.Meal;
 import com.order.model.Order;
-import com.order.repository.AccountRepositoryImpl;
-import com.order.service.AccountServiceImpl;
 
-import java.beans.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class Mapper {
     private ResultSet resultSet;
-    private Statement statement;
-    public Mapper(ResultSet resultSet){
+    public Account getAccount(ResultSet resultSet) throws SQLException {
         this.resultSet = resultSet;
-    }
-
-    AccountRepositoryImpl accountRepository = new AccountRepositoryImpl();
-    AccountService accountService = new AccountServiceImpl(accountRepository);
-
-    public Account getAccount() throws SQLException {
         Account account = new Account();
         resultSet.next();
         account.setId(resultSet.getLong("idAccount"));
@@ -34,7 +21,8 @@ public class Mapper {
         return account;
     }
 
-    public List<Account> getAccounts() throws  SQLException{
+    public List<Account> getAccounts(ResultSet resultSet) throws  SQLException{
+        this.resultSet = resultSet;
         int j = 1;
         List <Account> array = new ArrayList<>();
         while (resultSet.next()){
@@ -48,7 +36,8 @@ public class Mapper {
         return array;
     }
 
-    public Meal getMeal() throws SQLException {
+    public Meal getMeal(ResultSet resultSet) throws SQLException {
+        this.resultSet = resultSet;
         Meal meal = new Meal();
         resultSet.next();
         meal.setId(resultSet.getLong("idMeal"));
@@ -60,10 +49,11 @@ public class Mapper {
         return meal;
     }
 
-    public List<Meal> getMeals() throws SQLException {
+    public List<Meal> getMeals(ResultSet resultSet) throws SQLException {
+        this.resultSet = resultSet;
         int j = 1;
         List <Meal> array = new ArrayList<>();
-        while (resultSet.next()){
+        while(resultSet.next()) {
             Meal meal = new Meal();
             meal.setId(Long.getLong(resultSet.getString("idMeal")));    //?????
             meal.setNameOfMeal(resultSet.getString("nameOfMeal"));
@@ -76,8 +66,8 @@ public class Mapper {
         return array;
     }
 
-    public Order getOrder() {
-
+    public Order getOrder(ResultSet resultSet) {
+        this.resultSet = resultSet;
         try {
             Order order = new Order();
             resultSet.next();

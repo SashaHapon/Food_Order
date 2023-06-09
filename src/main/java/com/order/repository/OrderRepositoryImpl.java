@@ -1,13 +1,10 @@
 package com.order.repository;
 
 import com.order.api.repository.OrderRepository;
-import com.order.model.Meal;
 import com.order.model.Order;
 import com.order.utils.ConnectionManager;
 import com.order.utils.Mapper;
 
-import java.io.IOException;
-import java.sql.Array;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,8 +42,8 @@ public class OrderRepositoryImpl implements OrderRepository {
         try(var statement = connection.prepareStatement(query)) {
             statement.setString(1, String.valueOf(id));
             var resultSet = statement.executeQuery();
-            Mapper mapper = new Mapper(resultSet);
-            Order order = mapper.getOrder();
+            Mapper mapper = new Mapper();
+            Order order = mapper.getOrder(resultSet);
 
             return order;
         } catch (SQLException e) {

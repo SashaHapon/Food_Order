@@ -6,7 +6,6 @@ import com.order.utils.ConnectionManager;
 import com.order.utils.Mapper;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -38,8 +37,8 @@ public class MealRepositoryImpl implements MealRepository {
         try(var statement = connection.prepareStatement(query)) {
             statement.setString(1, String.valueOf(id));
             var resultSet = statement.executeQuery();
-            Mapper mapper = new Mapper(resultSet);
-            return mapper.getMeal();
+            Mapper mapper = new Mapper();
+            return mapper.getMeal(resultSet);
         } catch (SQLException e) {
 
             throw new RuntimeException(e);
@@ -66,8 +65,8 @@ public class MealRepositoryImpl implements MealRepository {
         var query = "SELECT * FROM meal";
         try(var statement  = connection.prepareStatement(query)){
             var resultSet = statement.executeQuery();
-            Mapper mapper = new Mapper(resultSet);
-            return mapper.getMeals();
+            Mapper mapper = new Mapper();
+            return mapper.getMeals(resultSet);
         }catch (SQLException e){
 
             System.out.println("Can't delete account: " + e.getMessage());

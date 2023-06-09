@@ -184,9 +184,7 @@
 
     </module>
 
-    <module name="SuppressionFilter">
-        <property name="file" value="${checkstyle.config.path}/suppressions.xml"/>
-    </module>
+
 
     <module name="RegexpMultiline">
         <property name="format" value="^([^\n ]+ )*(class|interface|enum) [^{]*\{\n[^\n}]"/>

@@ -1,8 +1,5 @@
 package com.order.utils;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -17,6 +14,8 @@ public class ConnectionManager {
     private Properties properties = new Properties();
     private static ConnectionManager instance;
 
+    Log log = new Log();
+
     private ConnectionManager(){};
 
     public static ConnectionManager getInstance(){
@@ -28,19 +27,16 @@ public class ConnectionManager {
     };
 
     public Connection getConnection(){
-        try {
-            FileInputStream in = new FileInputStream("src/main/java/resources/properties/config.property");
-            properties.load(in);
-        } catch (IOException e){
 
-        };
+        PropertyUtils property = new PropertyUtils();
 
-        String url = properties.getProperty("url");
-        String user = properties.getProperty("user");
-        String password = properties.getProperty("password");
+        String url = property.getProperty("url");
+        String user = property.getProperty("user");
+        String password = property.getProperty("password");
         try {
             connection = DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {
+            log.error(e.getMessage());
             System.out.println("Ошибка подключения к базе данных: " + e.getMessage());
         }
         return connection;
