@@ -10,6 +10,7 @@ import com.order.repository.MealRepositoryImpl;
 import com.order.repository.OrderRepositoryImpl;
 import com.order.service.*;
 import com.order.utils.EnterPoint;
+import com.order.utils.HibernateUtil;
 import com.order.utils.Log;
 
 import java.io.IOException;
@@ -71,5 +72,7 @@ public class Main {
 //check
      //   orderService.createOrder(acc, mealService.getAll());
     //    System.out.println(orderService.getOrder(UUID.fromString("bdba49b5-2685-434f-a365-425b1f8e7278")));
+        HibernateUtil hibernateUtil = new HibernateUtil();
+        hibernateUtil.buildSessionFactory();
     }
 }

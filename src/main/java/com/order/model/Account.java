@@ -7,15 +7,16 @@ import java.util.UUID;
 @Entity
 @Table(name = "account")
 public class Account {
+    @Id
+    @Column (name = "idAccount")
+    private String id;
     @Column (name = "accountName")
    private String accountName;
     @Column (name = "moneyOnCard")
     private double moneyOnCard;
     @Column (name = "phoneNumber")
     private String phoneNumber;
-    @Id
-    @Column (name = "idAccount")
-    private Long id;
+
 
     private String idw;
 
@@ -29,7 +30,7 @@ public class Account {
     public Account(String accountName, String phoneNumber, Long id){
         this.accountName = accountName;
         this.phoneNumber = phoneNumber;
-        this.id = id;
+        this.id = id.toString();
     }
 
     private String idRandomizer(){
@@ -71,10 +72,10 @@ public class Account {
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.id = id.toString();
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 

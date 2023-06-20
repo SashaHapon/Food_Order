@@ -1,38 +1,30 @@
 package com.order.utils;
 
+import com.order.model.Num;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
-
 
 public class HibernateUtil {
+    private static SessionFactory sf;
 
-    private static final SessionFactory sessionFactory = buildSessionFactory();
-    private static ServiceRegistry serviceRegistry;
 
-    private static SessionFactory buildSessionFactory() {
-        try {
-
+    public static SessionFactory buildSessionFactory() throws HibernateException  {
             Configuration configuration = new Configuration();
-            configuration.configure();
-            serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
+      //  configuration.addAnnotatedClass(Account.class);
+           configuration.configure();
 
-            return configuration.buildSessionFactory(serviceRegistry);
+        Num num = new Num(14,"2","43");
+
+           try(SessionFactory sessionFactory = configuration.buildSessionFactory();
+               Session session = sessionFactory.openSession();) {
+               session.beginTransaction();
+
+               session.save(num);
+
+               session.getTransaction().commit();
+               return sessionFactory;
+           }
         }
-        catch (Throwable ex) {
-            System.err.println("Initial SessionFactory creation failed." + ex);
-            throw new ExceptionInInitializerError(ex);
-        }
-    }
-
-    public static SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
-
-    public static void shutdown() {
-
-        getSessionFactory().close();
-    }
-
 }
