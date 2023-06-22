@@ -43,4 +43,12 @@ public class Num {
         this.three = three;
     }
 
+    @Override
+    public String toString() {
+        return "Num{" +
+                "one=" + one +
+                ", two='" + two + '\'' +
+                ", three='" + three + '\'' +
+                '}';
+    }
 }

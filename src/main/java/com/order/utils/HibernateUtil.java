@@ -22,6 +22,7 @@ public class HibernateUtil {
            }
         }
 
+        // TODO: 22.06.2023  return SessionFactory, and close it in next methods.
     public Session build(){
         Configuration configuration = new Configuration();
         configuration.configure();
