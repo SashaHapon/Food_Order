@@ -5,12 +5,12 @@ import com.order.api.service.AccountService;
 import com.order.api.service.MealService;
 import com.order.api.service.OrderService;
 import com.order.api.service.WalletService;
+import com.order.model.Num;
 import com.order.repository.AccountRepositoryImpl;
 import com.order.repository.MealRepositoryImpl;
 import com.order.repository.OrderRepositoryImpl;
 import com.order.service.*;
 import com.order.utils.EnterPoint;
-import com.order.utils.HibernateUtil;
 import com.order.utils.Log;
 
 import java.io.IOException;
@@ -23,8 +23,6 @@ public class Main {
         Log log = new Log();
         log.info("rr");
 
-        EnterPoint enter = new EnterPoint();
-        enter.enter();
 
         MealRepository mealRepository = new MealRepositoryImpl();
         MealService mealService = new MealServiceImpl(mealRepository);
@@ -35,7 +33,7 @@ public class Main {
 
         WalletService walletService = new WalletServiceImpl(accountService);
 
-        //var account = accountService.addAccount("Jack", 600,"+375449394875");
+        var account = accountService.addAccount("Jack", 600,"+375449394875");
 
        // var meal = mealService.addMeal("sosiski", 200, 5);
        // var meal1 = mealService.addMeal("makaroshki", 200, 10);
@@ -72,7 +70,12 @@ public class Main {
 //check
      //   orderService.createOrder(acc, mealService.getAll());
     //    System.out.println(orderService.getOrder(UUID.fromString("bdba49b5-2685-434f-a365-425b1f8e7278")));
-        HibernateUtil hibernateUtil = new HibernateUtil();
-        hibernateUtil.buildSessionFactory();
+        Num num = new Num(8711,"eds","ewq");
+//
+
+        EnterPoint enterPoint = new EnterPoint();
+        enterPoint.addToDataBase();
+        enterPoint.getFromDataBase(num, String.valueOf(1012));
+
     }
 }
