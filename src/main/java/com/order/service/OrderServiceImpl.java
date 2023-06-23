@@ -90,7 +90,7 @@ public class OrderServiceImpl implements OrderService {
     public void checkPayment(UUID idOrder) throws MyException {
             if (orderRepository.getOrder(idOrder).getOrderSum() > orderRepository.getOrder(idOrder)
                     .getAccount()
-                    .getMoneyOnCard())
+                    .getMoney())
                      throw new MyException("Not enought money", 1);
 
     }

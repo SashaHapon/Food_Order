@@ -13,13 +13,13 @@ public class WalletServiceImpl implements WalletService {
 
     @Override
     public double enrollmentMoney(UUID idAccount, double enrollmentMoney) {
-        accountService.getAccount(idAccount).setMoneyOnCard(accountService.getAccount(idAccount).getMoneyOnCard() + enrollmentMoney);
+        accountService.getAccount(idAccount).setMoney(accountService.getAccount(idAccount).getMoney() + enrollmentMoney);
         return enrollmentMoney;
     }
 
     @Override
     public double writeOffMoneyOnCard(UUID idAccount, double writeOffMoney) {
-        accountService.getAccount(idAccount).setMoneyOnCard(accountService.getAccount(idAccount).getMoneyOnCard() - writeOffMoney);
+        accountService.getAccount(idAccount).setMoney(accountService.getAccount(idAccount).getMoney() - writeOffMoney);
         return writeOffMoney;
     }
 }

@@ -14,10 +14,10 @@ public class AccountRepositoryImpl implements AccountRepository {
     @Override
     public Account addAccount(Account account) {
         var connection = connectionManager.getConnection();
-        var query = "INSERT account(idAccount, accountName, phoneNumber) VALUES (?, ?, ?)";
+        var query = "INSERT account(id, name, phone_number) VALUES (?, ?, ?)";
         try(var statement  = connection.prepareStatement(query)){
             statement.setString(1, String.valueOf(account.getIdw()));
-            statement.setString(2, account.getAccountName());
+            statement.setString(2, account.getName());
             statement.setString(3, account.getPhoneNumber());
             statement.executeUpdate();
             return account;

@@ -1,34 +1,30 @@
 package com.order.model;
 
-import jakarta.persistence.*;
-
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.UUID;
 
+// TODO: 23.06.2023 Fix::java.sql.SQLIntegrityConstraintViolationException: Duplicate entry
 @Entity
-@Table(name = "account")
+@Table(name = "account", schema = "mydb")
 public class Account {
     @Id
-    @Column (name = "idAccount")
     private String id;
-    @Column (name = "accountName")
-   private String accountName;
-    @Column (name = "moneyOnCard")
-    private double moneyOnCard;
-    @Column (name = "phoneNumber")
+    private String name;
+    private Double money;
+    @Column(name = "phone_number")
     private String phoneNumber;
-
-
-    private String idw;
-
     public Account(){};
     public Account(String accountName, double moneyOnCard, String phoneNumber){
-        this.accountName = accountName;
-        this.moneyOnCard = moneyOnCard;
+        this.name = accountName;
+        this.money = moneyOnCard;
         this.phoneNumber = phoneNumber;
-        this.idw = idRandomizer();
+        this.id = idRandomizer();
     }
     public Account(String accountName, String phoneNumber, Long id){
-        this.accountName = accountName;
+        this.name = accountName;
         this.phoneNumber = phoneNumber;
         this.id = id.toString();
     }
@@ -36,31 +32,32 @@ public class Account {
     private String idRandomizer(){
        String id  = String.valueOf(UUID.randomUUID());
         System.out.println(id);
+        id = "23134";
        return id;
     }
 
     public String getIdw() {
-        return idw;
+        return id;
     }
 
     public void setIdw(String idw) {
-        this.idw = idw;
+        this.id = idw;
     }
 
-    public String getAccountName() {
-        return accountName;
+    public String getName() {
+        return name;
     }
 
-    public void setAccountName(String accountName) {
-        this.accountName = accountName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public double getMoneyOnCard() {
-        return moneyOnCard;
+    public double getMoney() {
+        return money;
     }
 
-    public void setMoneyOnCard(double moneyOnCard) {
-        this.moneyOnCard = moneyOnCard;
+    public void setMoney(double money) {
+        this.money = money;
     }
 
     public String getPhoneNumber() {
@@ -82,8 +79,8 @@ public class Account {
     @Override
     public String toString() {
         return "Account{" +
-                "accountName='" + accountName + '\'' +
-                ", moneyOnCard=" + moneyOnCard +
+                "accountName='" + name + '\'' +
+                ", moneyOnCard=" + money +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", id=" + id +
                 '}';

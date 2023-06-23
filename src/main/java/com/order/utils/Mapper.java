@@ -16,7 +16,7 @@ public class Mapper {
         Account account = new Account();
         resultSet.next();
         account.setId(resultSet.getLong("idAccount"));
-        account.setAccountName(resultSet.getString("accountName"));
+        account.setName(resultSet.getString("accountName"));
         account.setPhoneNumber(resultSet.getString("phoneNumber"));
         return account;
     }
@@ -28,7 +28,7 @@ public class Mapper {
         while (resultSet.next()){
             Account account = new Account();
             account.setId(resultSet.getLong("idAccount"));
-            account.setAccountName(resultSet.getString("accountName"));
+            account.setName(resultSet.getString("accountName"));
             account.setPhoneNumber(resultSet.getString("phoneNumber"));
             array.add(account);
             j++;

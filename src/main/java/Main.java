@@ -5,6 +5,7 @@ import com.order.api.service.AccountService;
 import com.order.api.service.MealService;
 import com.order.api.service.OrderService;
 import com.order.api.service.WalletService;
+import com.order.model.Account;
 import com.order.model.Num;
 import com.order.repository.AccountRepositoryImpl;
 import com.order.repository.MealRepositoryImpl;
@@ -33,7 +34,7 @@ public class Main {
 
         WalletService walletService = new WalletServiceImpl(accountService);
 
-        var account = accountService.addAccount("Jack", 600,"+375449394875");
+       // var account = accountService.addAccount("Jackk", 600,"+37544000000");
 
        // var meal = mealService.addMeal("sosiski", 200, 5);
        // var meal1 = mealService.addMeal("makaroshki", 200, 10);
@@ -73,9 +74,11 @@ public class Main {
         Num num = new Num(1012,"hh889","000");
 //
 
+
+        Account account = new Account("dw", 658, "+54445");
         EnterPoint enterPoint = new EnterPoint();
-     //   enterPoint.createInDataBase();
-        enterPoint.readFromDataBase(num,10);
+        enterPoint.createInDataBase(account);
+   //     enterPoint.readFromDataBase(num,10);
        // enterPoint.updateInDataBase(num);
      //   enterPoint.deleteInDataBase(num);
     }
