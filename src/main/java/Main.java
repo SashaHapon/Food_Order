@@ -75,8 +75,8 @@ public class Main {
 
         EnterPoint enterPoint = new EnterPoint();
      //   enterPoint.createInDataBase();
-        enterPoint.readFromDataBase(10);
+        enterPoint.readFromDataBase(num,10);
        // enterPoint.updateInDataBase(num);
-        enterPoint.deleteInDataBase(num);
+     //   enterPoint.deleteInDataBase(num);
     }
 }
