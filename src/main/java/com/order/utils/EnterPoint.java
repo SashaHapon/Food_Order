@@ -9,7 +9,7 @@ import java.util.List;
 public class EnterPoint {
     HibernateUtil hibernateUtil = new HibernateUtil();
     public void createInDataBase(Object object) {
-        try (Session session = hibernateUtil.build();
+        try (Session session = hibernateUtil.buildSession();
              ){
             session.beginTransaction();
             session.save(object);
@@ -21,7 +21,7 @@ public class EnterPoint {
     }
 
     public Object readFromDataBase(Object object, Integer id) {
-        try (Session session = hibernateUtil.build();
+        try (Session session = hibernateUtil.buildSession();
         ) {
             var newClass = object.getClass();
             session.beginTransaction();
@@ -35,7 +35,7 @@ public class EnterPoint {
     }
 
     public Object updateInDataBase(Object object){
-        try(Session session = hibernateUtil.build()){
+        try(Session session = hibernateUtil.buildSession()){
             session.beginTransaction();
             session.update(object);
             session.getTransaction().commit();
@@ -46,23 +46,22 @@ public class EnterPoint {
     }
 
     public void deleteInDataBase(Object object){
-        try(Session session = hibernateUtil.build()){
+        try(Session session = hibernateUtil.buildSession()){
             session.beginTransaction();
             session.delete(object);
             session.getTransaction().commit();
         } catch (HibernateException e){
-            System.out.println(e.getMessage());
+            throw new HibernateException(e);
         }
     }
     public List<Object> getAllObject(Object object){
         List objects = new ArrayList<>();
-        try(Session session = hibernateUtil.build()){
+        try(Session session = hibernateUtil.buildSession()){
             session.beginTransaction();
             objects = session.createCriteria(object.getClass()).list();
             System.out.println(objects);
             session.getTransaction().commit();
         } catch (HibernateException e) {
-            System.out.println(e.getMessage());
             throw new HibernateException(e);
         }
         return objects;
