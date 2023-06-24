@@ -13,5 +13,7 @@
         <property name="format_sql">true</property>
         <mapping class="com.order.model.Num"></mapping>
         <mapping class="com.order.model.Account"></mapping>
+        <mapping class="com.order.model.Meal"></mapping>
+
     </session-factory>
 </hibernate-configuration>

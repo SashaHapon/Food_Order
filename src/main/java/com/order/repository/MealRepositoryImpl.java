@@ -15,12 +15,12 @@ public class MealRepositoryImpl implements MealRepository {
     @Override
     public Meal addMeal(Meal meal){
         var connection = connectionManager.getConnection();
-        var query = "INSERT meal(idMeal, nameOfMeal, priceOfMeal, cookingTime, createDate) VALUES(?,?,?,?,?)";
+        var query = "INSERT meal(id, name, price, time, date) VALUES(?,?,?,?,?)";
         try(var statement  = connection.prepareStatement(query)){
             statement.setString(1, String.valueOf(UUID.randomUUID()));
-            statement.setString(2, meal.getNameOfMeal());
-            statement.setString(3, String.valueOf(meal.getPriceOfMeal()));
-            statement.setString(4, String.valueOf(meal.getCookingTime()));
+            statement.setString(2, meal.getName());
+            statement.setString(3, String.valueOf(meal.getPrice()));
+            statement.setString(4, String.valueOf(meal.getTime()));
             statement.setString(5, "10/10/2022");
             statement.executeUpdate();
             return meal;

@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class Mapper {
     private ResultSet resultSet;
@@ -40,11 +41,11 @@ public class Mapper {
         this.resultSet = resultSet;
         Meal meal = new Meal();
         resultSet.next();
-        meal.setId(resultSet.getLong("idMeal"));
-        meal.setNameOfMeal(resultSet.getString("nameOfMeal"));
-        meal.setPriceOfMeal(resultSet.getDouble("priceOfMeal"));
-        meal.setCookingTime(resultSet.getInt("cookingTime"));
-        meal.setCreateDate(resultSet.getString("createDate"));
+        meal.setId(resultSet.getString("idMeal"));
+        meal.setName(resultSet.getString("nameOfMeal"));
+        meal.setPrice(resultSet.getDouble("priceOfMeal"));
+        meal.setTime(resultSet.getInt("cookingTime"));
+        meal.setDate(resultSet.getString("createDate"));
 
         return meal;
     }
@@ -55,11 +56,11 @@ public class Mapper {
         List <Meal> array = new ArrayList<>();
         while(resultSet.next()) {
             Meal meal = new Meal();
-            meal.setId(Long.getLong(resultSet.getString("idMeal")));    //?????
-            meal.setNameOfMeal(resultSet.getString("nameOfMeal"));
-            meal.setPriceOfMeal(resultSet.getDouble("priceOfMeal"));
-            meal.setCookingTime(resultSet.getInt("cookingTime"));
-            meal.setCreateDate(resultSet.getString("createDate"));
+            meal.setId(resultSet.getString("idMeal"));    //?????
+            meal.setName(resultSet.getString("nameOfMeal"));
+            meal.setPrice(resultSet.getDouble("priceOfMeal"));
+            meal.setTime(resultSet.getInt("cookingTime"));
+            meal.setDate(resultSet.getString("createDate"));
             array.add(meal);
             j++;
         }

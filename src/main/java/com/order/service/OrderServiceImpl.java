@@ -43,15 +43,15 @@ public class OrderServiceImpl implements OrderService {
     public void addMeal(Meal meal, UUID idOrder){
         var order = orderRepository.getOrder(idOrder);
         order.getMeals().add(meal);
-        order.setOrderSum(order.getOrderSum() + meal.getPriceOfMeal());
-        order.setCookingTimeSum(order.getCookingTimeSum() + meal.getCookingTime());
+        order.setOrderSum(order.getOrderSum() + meal.getPrice());
+        order.setCookingTimeSum(order.getCookingTimeSum() + meal.getTime());
     }
 
     @Override
     public void remove(Meal meal, UUID idOrder){
         var order = orderRepository.getOrder(idOrder);
         order.getMeals().remove(meal);
-        order.setCookingTimeSum(order.getCookingTimeSum() - meal.getCookingTime());
+        order.setCookingTimeSum(order.getCookingTimeSum() - meal.getTime());
     }
 
     @Override
@@ -63,7 +63,7 @@ public class OrderServiceImpl implements OrderService {
     private int cookingTimeSum(Order order){
         int cookingTimeSum = 0;
         for (Meal meal : order.getMeals()) {
-            cookingTimeSum += meal.getCookingTime();
+            cookingTimeSum += meal.getTime();
         }
         order.setCookingTimeSum(cookingTimeSum);
         return cookingTimeSum;
@@ -72,7 +72,7 @@ public class OrderServiceImpl implements OrderService {
     private double orderSum(Order order){
         double orderSum = 0;
         for (int i = 0; i < order.getMeals().size(); i++){
-            orderSum += order.getMeals().get(i).getPriceOfMeal();
+            orderSum += order.getMeals().get(i).getPrice();
         }
         order.setOrderSum(orderSum);
         return orderSum;

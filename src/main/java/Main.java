@@ -36,7 +36,7 @@ public class Main {
 
        // var account = accountService.addAccount("Jackk", 600,"+37544000000");
 
-       // var meal = mealService.addMeal("sosiski", 200, 5);
+        var meal = mealService.addMeal("sosiski", 200, 5);
        // var meal1 = mealService.addMeal("makaroshki", 200, 10);
       //  var meal2 = mealService.addMeal("Potatos", 65, 20);
 
@@ -77,7 +77,7 @@ public class Main {
 
         Account account = new Account("dw", 658, "+54445");
         EnterPoint enterPoint = new EnterPoint();
-        enterPoint.createInDataBase(account);
+        enterPoint.createInDataBase(meal);
    //     enterPoint.readFromDataBase(num,10);
        // enterPoint.updateInDataBase(num);
      //   enterPoint.deleteInDataBase(num);

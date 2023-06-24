@@ -1,75 +1,84 @@
 package com.order.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.UUID;
 
+@Entity
+@Table(name = "meal", schema = "mydb")
 public class Meal {
-    private String nameOfMeal;
-    private double priceOfMeal;
-    private int cookingTime;
-    private String createDate;
-    private Long id;
+    @Id
+    private String id;
+
+    private String name;
+    private double price;
+    private int time;
+    private String date;
+
 
     public Meal(){};
 
     public Meal(String nameOfMeal, double priceOfMeal, int cookingTime){
-        this.nameOfMeal = nameOfMeal;
-        this.priceOfMeal = priceOfMeal;
-        this.cookingTime = cookingTime;
+        this.name = nameOfMeal;
+        this.price = priceOfMeal;
+        this.time = cookingTime;
+        this.id = UUID.randomUUID().toString();
     }
-    public Meal(String nameOfMeal, double priceOfMeal, int cookingTime, Long id){
-        this.nameOfMeal = nameOfMeal;
-        this.priceOfMeal = priceOfMeal;
-        this.cookingTime = cookingTime;
+    public Meal(String nameOfMeal, double priceOfMeal, int cookingTime, String id){
+        this.name = nameOfMeal;
+        this.price = priceOfMeal;
+        this.time = cookingTime;
         this.id = id;
     }
 
 
 
-    public void setNameOfMeal(String nameOfMeal) {
-       this.nameOfMeal = nameOfMeal;
+    public void setName(String name) {
+       this.name = name;
     }
 
-   public void setPriceOfMeal(double priceOfMeal) {
-       this.priceOfMeal = priceOfMeal;
+   public void setPrice(double price) {
+       this.price = price;
     }
 
-    public void setCookingTime(int cookingTime) {
-        this.cookingTime = cookingTime;
+    public void setTime(int time) {
+        this.time = time;
     }
 
-    public String getNameOfMeal() {
-        return nameOfMeal;
+    public String getName() {
+        return name;
     }
 
-    public double getPriceOfMeal() {
-        return priceOfMeal;
+    public double getPrice() {
+        return price;
     }
 
-    public int getCookingTime() {
-        return cookingTime;
+    public int getTime() {
+        return time;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getCreateDate() {
-        return createDate;
+    public String getDate() {
+        return date;
     }
 
-    public void setCreateDate(String createDate) {
-        this.createDate = createDate;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
     public String toString() {
         return "Meal{" +
-                "nameOfMeal='" + nameOfMeal + '\'' +
-                ", priceOfMeal=" + priceOfMeal +
-                ", cookingTime=" + cookingTime +
-                ", createData='" + createDate + '\'' +
+                "nameOfMeal='" + name + '\'' +
+                ", priceOfMeal=" + price +
+                ", cookingTime=" + time +
+                ", createData='" + date + '\'' +
                 '}';
     }
 }
