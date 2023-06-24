@@ -30,13 +30,4 @@ public class HibernateUtil {
         Session session = sessionFactory.openSession();
         return session;
     }
-    public Object addObject(Object object){
-        var session = buildSessionFactory();
-        session.beginTransaction();
-        session.save(this.object);
-        session.getTransaction().commit();
-        return object;
-    }
-
-
 }

@@ -10,7 +10,6 @@ import java.util.UUID;
 public class Meal {
     @Id
     private String id;
-
     private String name;
     private double price;
     private int time;

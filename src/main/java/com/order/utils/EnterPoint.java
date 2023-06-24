@@ -3,6 +3,9 @@ package com.order.utils;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class EnterPoint {
     HibernateUtil hibernateUtil = new HibernateUtil();
     public void createInDataBase(Object object) {
@@ -51,5 +54,19 @@ public class EnterPoint {
             System.out.println(e.getMessage());
         }
     }
+    public List<Object> getAllObject(Object object){
+        List objects = new ArrayList<>();
+        try(Session session = hibernateUtil.build()){
+            session.beginTransaction();
+            objects = session.createCriteria(object.getClass()).list();
+            System.out.println(objects);
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            System.out.println(e.getMessage());
+            throw new HibernateException(e);
+        }
+        return objects;
+    }
+
 
 }

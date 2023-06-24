@@ -78,6 +78,7 @@ public class Main {
         Account account = new Account("dw", 658, "+54445");
         EnterPoint enterPoint = new EnterPoint();
         enterPoint.createInDataBase(meal);
+        enterPoint.getAllObject(meal);
    //     enterPoint.readFromDataBase(num,10);
        // enterPoint.updateInDataBase(num);
      //   enterPoint.deleteInDataBase(num);

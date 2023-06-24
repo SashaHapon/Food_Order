@@ -1,16 +1,20 @@
 package com.order.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
+@Entity
+@Table(name = "order", schema = "mydb")
 public class Order {
-
+    @Id
+    private Long id;
     private List<Meal> meals = new ArrayList<>();
     private Account account;
-    private Long id;
-
     private String accountId;
+    private String idw;
 
     public String getAccountId() {
         return accountId;
@@ -20,7 +24,7 @@ public class Order {
         this.accountId = accountId;
     }
 
-    private String idw;
+
 
     public String getIdw() {
         return idw;
