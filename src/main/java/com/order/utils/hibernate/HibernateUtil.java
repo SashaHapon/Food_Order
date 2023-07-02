@@ -1,4 +1,4 @@
-package com.order.utils;
+package com.order.utils.hibernate;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

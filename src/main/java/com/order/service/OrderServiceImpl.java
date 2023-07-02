@@ -91,7 +91,7 @@ public class OrderServiceImpl implements OrderService {
             if (orderRepository.getOrder(idOrder).getOrderSum() > orderRepository.getOrder(idOrder)
                     .getAccount()
                     .getMoney())
-                     throw new MyException("Not enought money", 1);
+                     throw new MyException("Not enought money");
 
     }
 

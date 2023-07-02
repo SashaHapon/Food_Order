@@ -10,11 +10,10 @@ import java.util.List;
 @Table(name = "order", schema = "mydb")
 public class Order {
     @Id
-    private Long id;
+    private String id;
     private List<Meal> meals = new ArrayList<>();
     private Account account;
     private String accountId;
-    private String idw;
 
     public String getAccountId() {
         return accountId;
@@ -22,16 +21,6 @@ public class Order {
 
     public void setAccountId(String accountId) {
         this.accountId = accountId;
-    }
-
-
-
-    public String getIdw() {
-        return idw;
-    }
-
-    public void setIdw(String idw) {
-        this.idw = idw;
     }
 
     private double orderSum;
@@ -53,11 +42,11 @@ public class Order {
         this.account = account;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -8,7 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class Mapper {
     private ResultSet resultSet;
@@ -16,7 +15,7 @@ public class Mapper {
         this.resultSet = resultSet;
         Account account = new Account();
         resultSet.next();
-        account.setId(resultSet.getLong("idAccount"));
+        account.setId(resultSet.getString("idAccount"));
         account.setName(resultSet.getString("accountName"));
         account.setPhoneNumber(resultSet.getString("phoneNumber"));
         return account;
@@ -28,7 +27,7 @@ public class Mapper {
         List <Account> array = new ArrayList<>();
         while (resultSet.next()){
             Account account = new Account();
-            account.setId(resultSet.getLong("idAccount"));
+            account.setId(resultSet.getString("idAccount"));
             account.setName(resultSet.getString("accountName"));
             account.setPhoneNumber(resultSet.getString("phoneNumber"));
             array.add(account);
@@ -72,7 +71,7 @@ public class Mapper {
         try {
             Order order = new Order();
             resultSet.next();
-            order.setIdw(resultSet.getString("idOrderRepository"));     //?? can't get Long
+            order.setId(resultSet.getString("idOrderRepository"));     //?? can't get Long
             order.setCookingTimeSum(resultSet.getInt("cookingTimeSum"));
             order.setOrderSum(Double.parseDouble(resultSet.getString("orderSum")));
 

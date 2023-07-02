@@ -12,21 +12,28 @@ import java.util.UUID;
 public class Account {
     @Id
     private String id;
+
     private String name;
+
     private Double money;
+
     @Column(name = "phone_number")
     private String phoneNumber;
+
     public Account(){};
+
     public Account(String accountName, double moneyOnCard, String phoneNumber){
         this.name = accountName;
         this.money = moneyOnCard;
         this.phoneNumber = phoneNumber;
         this.id = idRandomizer();
     }
+
+    @Deprecated
     public Account(String accountName, String phoneNumber, Long id){
         this.name = accountName;
         this.phoneNumber = phoneNumber;
-        this.id = id.toString();
+       this.id = id.toString();
     }
 
     private String idRandomizer(){
@@ -36,12 +43,12 @@ public class Account {
        return id;
     }
 
-    public String getIdw() {
+    public String getId() {
         return id;
     }
 
-    public void setIdw(String idw) {
-        this.id = idw;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -66,14 +73,6 @@ public class Account {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public void setId(Long id) {
-        this.id = id.toString();
-    }
-
-    public String getId() {
-        return id;
     }
 
     @Override

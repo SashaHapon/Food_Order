@@ -1,5 +1,5 @@
 package com.order.service;
-import java.lang.Exception;
+
 public class MyException extends RuntimeException {
     private int number;
 
@@ -7,9 +7,9 @@ public class MyException extends RuntimeException {
         return number;
     }
 
-    public MyException(String message, int num) {
+    public MyException(String message) {
 
         super(message);
-        number = num;
+
     }
 }

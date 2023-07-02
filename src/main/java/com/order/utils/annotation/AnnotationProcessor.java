@@ -6,10 +6,9 @@ import java.lang.reflect.Field;
 
 public class AnnotationProcessor {
     public static void inspectService(Class<?> cl) throws NoSuchFieldException {
-
         Object ob = ConnectionManager.getInstance();
         ConfigProperty configProperty = ob.getClass().getAnnotation(ConfigProperty.class);
-        try {
+        try{
             Field field = cl.getDeclaredField("url");
             field.setAccessible(true);
             field.set(ob, configProperty.url());

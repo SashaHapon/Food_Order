@@ -1,5 +1,6 @@
 import com.order.service.MyException;
 import com.order.utils.ConnectionManager;
+import com.order.utils.PropertyUtils;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -10,7 +11,7 @@ import static com.order.utils.annotation.AnnotationProcessor.inspectService;
 
 public class Main {
     public static void main(String[] args) throws IOException, MyException, SQLException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchFieldException {
-//
+        PropertyUtils propertyUtils = new PropertyUtils();
 //        Log log = new Log();
 //        log.info("rr");
 //
@@ -77,7 +78,7 @@ public class Main {
         inspectService(ConnectionManager.class);
         System.out.println(ConnectionManager.class.getDeclaredFields());
         ConnectionManager con = ConnectionManager.getInstance();
-        System.out.println(con.url);
+        System.out.println(con.getUrl());
 
 
 
